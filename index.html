@@ -1,60 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex — Photography</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Photography</title>
+<link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <!-- Header / Banner -->
-    <header class="hero">
-        <img src="assets/images/banner.jpg.JPG" alt="Banner" class="hero-img">
-        <div class="hero-text">
-            <h1>Quiet light, honest moments</h1>
-            <p>A small selection of photographs — landscapes, streets, and faces.</p>
-        </div>
-        <nav class="menu">
-            <a href="#gallery">Gallery</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </nav>
-    </header>
 
-    <!-- Gallery Section -->
-    <main>
-        <section id="gallery" class="section">
-            <h2>Gallery</h2>
-            <div class="gallery">
-                <figure class="photo">
-                    <img src="assets/images/photo-placeholder.jpg" alt="Gallery Placeholder">
-                    <figcaption>Sample Caption</figcaption>
-                </figure>
-            </div>
-        </section>
+<!-- Hero / Banner -->
+<header class="hero">
+    <img src="assets/images/banner.jpg" alt="Banner" class="hero-img">
+    <div class="hero-text">
+        <h1>Alex Photography</h1>
+        <p>Capturing light, mood, and emotion</p>
+        <a class="cta" href="#gallery">View Gallery</a>
+    </div>
+    <nav class="menu">
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
 
-        <!-- About Section -->
-        <section id="about" class="section">
-            <h2>About</h2>
-            <p>I'm Alex — learning photography. This site is a minimal gallery to share work-in-progress and favourite frames.</p>
-        </section>
+<!-- Main content -->
+<main>
+<section id="gallery" class="section">
+    <h2>Gallery</h2>
+    <div class="gallery">
+        <figure class="photo">
+            <img src="assets/images/gallery1.jpg" alt="Gallery 1">
+            <figcaption>Gallery 1</figcaption>
+        </figure>
+        <figure class="photo">
+            <img src="assets/images/gallery2.jpg" alt="Gallery 2">
+            <figcaption>Gallery 2</figcaption>
+        </figure>
+        <figure class="photo">
+            <img src="assets/images/gallery3.jpg" alt="Gallery 3">
+            <figcaption>Gallery 3</figcaption>
+        </figure>
+        <!-- Add more gallery images here -->
+    </div>
+</section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="section">
-            <h2>Contact</h2>
-            <p>Email: <a href="mailto:alex@example.com">alex@example.com</a></p>
-            <p>Instagram/Twitter: <em>@yourhandle</em></p>
-        </section>
-    </main>
+<section id="about" class="section">
+    <h2>About</h2>
+    <p>I'm Alex — learning photography. This site showcases my work with a clean, ambient style.</p>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <p>© <span id="year"></span> Alex — Photography</p>
-    </footer>
+<section id="contact" class="section">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:alex@example.com">alex@example.com</a></p>
+    <p>Instagram/Twitter: <em>@yourhandle</em></p>
+</section>
+</main>
 
-    <script>
-        // Set current year
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
+<!-- Footer -->
+<footer>
+    <p>© <span id="year"></span> Alex Photography</p>
+</footer>
+
+<script src="assets/js/script.js"></script>
 </body>
 </html>

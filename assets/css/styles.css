@@ -26,7 +26,7 @@ body {
 }
 
 .site-header.shrink {
-  padding: 30px 20px; /* slightly taller when shrunk */
+  padding: 20px 20px; /* slightly taller when shrunk */
   background: rgba(255, 255, 255, 0.6);
 }
 

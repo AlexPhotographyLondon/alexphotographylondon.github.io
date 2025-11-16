@@ -8,52 +8,49 @@
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="header-inner">
-      <h1 class="site-title">Alex Photography</h1>
-      <p class="site-tagline">Capturing light, mood & moments</p>
+<header class="banner">
+  <div class="banner-inner">
+    <h1>Alex Photography</h1>
+    <p>Capturing light, mood & moments</p>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <img class="hero-image" src="assets/images/hero-photo.jpg" alt="">
+  </section>
+
+  <section id="gallery" class="section gallery">
+    <h2>Gallery</h2>
+    <div class="grid">
+      <figure><img src="assets/images/gallery1.jpg" alt=""><figcaption>Photo 1</figcaption></figure>
+      <figure><img src="assets/images/gallery2.jpg" alt=""><figcaption>Photo 2</figcaption></figure>
+      <figure><img src="assets/images/gallery3.jpg" alt=""><figcaption>Photo 3</figcaption></figure>
     </div>
-  </header>
+  </section>
 
-  <main class="site-main">
-    <section class="hero">
-      <img class="hero-image" src="assets/images/hero-photo.jpg" alt="Hero photo">
-    </section>
+  <section class="section about">
+    <h2>About Me</h2>
+    <p>I’m Alex — exploring light and quiet moments through photography.</p>
+  </section>
+</main>
 
-    <section id="gallery" class="section gallery">
-      <h2>Gallery</h2>
-      <div class="grid">
-        <figure><img src="assets/images/gallery1.jpg" alt=""><figcaption>Photo 1</figcaption></figure>
-        <figure><img src="assets/images/gallery2.jpg" alt=""><figcaption>Photo 2</figcaption></figure>
-        <figure><img src="assets/images/gallery3.jpg" alt=""><figcaption>Photo 3</figcaption></figure>
-        <!-- Add more figures as needed -->
-      </div>
-    </section>
+<footer class="site-footer">
+  <small>© <span id="year"></span> Alex Photography</small>
+</footer>
 
-    <section id="about" class="section about">
-      <h2>About Me</h2>
-      <p>Hi, I’m Alex—a photographer exploring light, emotion, and the quiet moments.</p>
-    </section>
-  </main>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-  <footer class="site-footer">
-    <small>© <span id="year"></span> Alex Photography</small>
-  </footer>
+  // === SHRINKING BANNER ===
+  const banner = document.querySelector('.banner');
 
-  <script>
-    // Set current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Shrink header on scroll
-    const header = document.querySelector('.site-header');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100) {
-        header.classList.add('shrink');
-      } else {
-        header.classList.remove('shrink');
-      }
-    });
-  </script>
+  window.addEventListener("scroll", () => {
+    let scrolled = window.scrollY;
+    let newHeight = Math.max(45, 110 - scrolled * 0.3); 
+    banner.style.height = newHeight + "px";
+  });
+</script>
 
 </body>
 </html>

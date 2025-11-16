@@ -166,7 +166,13 @@ body {
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
-
+.gallery h2 {
+  font-size: 2rem;          /* size of the text */
+  margin-bottom: 20px;      /* space below */
+  text-align: center;        /* centers the text horizontally */
+  font-family: 'Georgia', serif; /* change to any font you like */
+  font-weight: 500;          /* optional: boldness */
+}
 /* === DOUBLE FRAME FOR IMAGES & VIDEOS === */
 .image-frame {
   border: 8px solid #fff;  /* outer white frame */

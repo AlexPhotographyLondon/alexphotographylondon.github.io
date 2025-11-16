@@ -1,5 +1,2 @@
-// Placeholder script file
-// You can add interactive features here later.
-// For now, this just logs that your site is working.
-
-console.log("Photo site loaded successfully.");
+// Set current year in footer
+document.getElementById('year').textContent = new Date().getFullYear();

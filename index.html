@@ -3,19 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Photo Gallery</title>
+    <title>Alex — Photography</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>My Photo Gallery</h1>
-    <p>Welcome! This is a simple clean space to showcase my photography.</p>
+    <!-- Header / Banner -->
+    <header class="hero">
+        <img src="assets/images/banner.jpg" alt="Banner" class="hero-img">
+        <div class="hero-text">
+            <h1>Quiet light, honest moments</h1>
+            <p>A small selection of photographs — landscapes, streets, and faces.</p>
+        </div>
+        <nav class="menu">
+            <a href="#gallery">Gallery</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
-    <div class="gallery">
-        <!-- Add your photos below -->
-        <!-- Example:
-        <img src="photo1.jpg" alt="Photo 1">
-        <img src="photo2.jpg" alt="Photo 2">
-        -->
-    </div>
+    <!-- Gallery Section -->
+    <main>
+        <section id="gallery" class="section">
+            <h2>Gallery</h2>
+            <div class="gallery">
+                <figure class="photo">
+                    <img src="assets/images/photo-placeholder.jpg" alt="Gallery Placeholder">
+                    <figcaption>Sample Caption</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2>About</h2>
+            <p>I'm Alex — learning photography. This site is a minimal gallery to share work-in-progress and favourite frames.</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:alex@example.com">alex@example.com</a></p>
+            <p>Instagram/Twitter: <em>@yourhandle</em></p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© <span id="year"></span> Alex — Photography</p>
+    </footer>
+
+    <script>
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>

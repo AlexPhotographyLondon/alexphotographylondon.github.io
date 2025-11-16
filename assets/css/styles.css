@@ -8,7 +8,7 @@
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.5;
-  background: #DEDEED;
+  background: #E4E8CC;
   color: #333;
   scroll-behavior: smooth; /* smooth scrolling for anchor links if needed */
 }

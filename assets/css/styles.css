@@ -113,3 +113,7 @@ body {
   background-color: #f7f3e9; /* creamy white */
   color: #333;               /* dark text for contrast */
 }
+header {
+  background-color: #fffdf7;  /* soft cream */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15); /* subtle depth */
+}

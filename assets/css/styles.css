@@ -7,12 +7,18 @@ body, html {
   color: #333;
 }
 
-/* Banner */
+/* Banner default */
 .banner {
   position: relative;
-  height: 50vh; /* half the previous height */
-  border-top: 3px solid #d4c9b8; /* thin modern top border line */
+  height: 50vh; /* default desktop height */
+  border-top: 3px solid #d4c9b8;
   overflow: hidden;
+  transition: height 0.3s ease; /* smooth shrink */
+}
+
+/* Shrunk banner class */
+.banner.shrink {
+  height: 20vh; /* smaller height on scroll */
 }
 
 .banner-overlay {
@@ -21,11 +27,48 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  /* Cream gradient background */
   background: linear-gradient(135deg, #fdf6e3, #f3e9d2);
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s ease;
+}
+
+.glass-text {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 2rem 3rem;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+/* Adjust glass-text size when banner shrinks */
+.banner.shrink .glass-text {
+  padding: 1rem 2rem;
+}
+
+.banner.shrink h1 {
+  font-size: 1.5rem; 
+}
+
+.banner.shrink .tag {
+  font-size: 0.9rem;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .banner {
+    height: 30vh;
+  }
+  .banner.shrink {
+    height: 15vh;
+  }
+  .glass-text {
+    padding: 1rem 1.5rem;
+  }
 }
 
 /* Floating glass effect */

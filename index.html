@@ -46,5 +46,16 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+  <script>
+  const banner = document.querySelector('.banner');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) { // shrink after scrolling 50px
+      banner.classList.add('shrink');
+    } else {
+      banner.classList.remove('shrink');
+    }
+  });
+</script>
 </body>
 </html>

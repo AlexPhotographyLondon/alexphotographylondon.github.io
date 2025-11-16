@@ -1,0 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+}

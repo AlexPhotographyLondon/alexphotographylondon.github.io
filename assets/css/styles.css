@@ -168,10 +168,11 @@ body {
 }
 
 .image-frame {
-  border: 8px solid #fff; /* outer white frame */
-  padding: 4px; /* space between white and black frame */
+  border: 8px solid #fff;
+  padding: 16px 4px; /* 16px top/bottom, 4px left/right */
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   text-align: center;
+  overflow: hidden;
 }
 
 .image-frame img {

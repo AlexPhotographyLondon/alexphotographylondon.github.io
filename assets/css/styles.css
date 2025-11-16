@@ -166,17 +166,19 @@ body {
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
+
 .gallery h2 {
   font-size: 2rem;          /* size of the text */
   margin-bottom: 20px;      /* space below */
-  text-align: center;        /* centers the text horizontally */
+  text-align: center;       /* centers the text horizontally */
   font-family: 'Georgia', serif; /* change to any font you like */
-  font-weight: 500;          /* optional: boldness */
+  font-weight: 500;         /* optional: boldness */
 }
-/* === DOUBLE FRAME FOR IMAGES & VIDEOS === */
+
+/* === DOUBLE FRAME FOR IMAGES & VIDEOS (Original size preserved) === */
 .image-frame {
   border: 8px solid #fff;  /* outer white frame */
-  padding: 4px;             /* inner spacing from white frame */
+  padding: 10px 0;         /* vertical spacing inside the white frame */
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   text-align: center;
   overflow: hidden;
@@ -184,13 +186,14 @@ body {
 
 .image-frame img,
 .image-frame video {
-  display: block;           /* ensures vertical margins work */
-  width: 100%;
-  height: auto;
+  display: block;
+  width: auto;            /* preserves original width */
+  max-width: 100%;        /* prevents overflow */
+  height: auto;           /* preserves original height */
   border-radius: 0;
-  border: 4px solid #000;   /* inner black frame */
+  border: 4px solid #000; /* inner black frame */
   box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-  margin: 0px 0;            /* vertical spacing inside the frame */
+  margin: 0 auto;         /* centers content horizontally */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 

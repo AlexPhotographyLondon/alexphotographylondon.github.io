@@ -21,15 +21,11 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 50vh; /* default desktop height */
+      height: 50vh; /* max height */
       border-top: 3px solid #8aa29e; /* muted teal accent */
       overflow: hidden;
       z-index: 999;
-      transition: height 0.3s ease;
-    }
-
-    .banner.shrink {
-      height: 20vh;
+      transition: height 0.1s ease-out;
     }
 
     .banner-overlay {
@@ -39,7 +35,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: all 0.3s ease;
+      transition: all 0.1s ease-out;
     }
 
     /* ------------------ GLASS TEXT ------------------ */
@@ -51,20 +47,9 @@
       border-radius: 15px;
       box-shadow: 0 8px 30px rgba(0,0,0,0.15);
       text-align: center;
-      color: #2f3e46; /* text color for contrast */
-      transition: all 0.3s ease;
-    }
-
-    .banner.shrink .glass-text {
-      padding: 1rem 2rem;
-    }
-
-    .banner.shrink h1 {
-      font-size: 1.5rem;
-    }
-
-    .banner.shrink .tag {
-      font-size: 0.9rem;
+      color: #2f3e46;
+      transition: transform 0.1s ease-out, padding 0.1s ease-out;
+      transform: translateY(0);
     }
 
     /* ------------------ FADE-IN ------------------ */
@@ -80,7 +65,7 @@
     /* ------------------ MAIN CONTENT ------------------ */
     .site-main {
       padding-top: 50vh; /* content starts below banner */
-      transition: padding-top 0.3s ease;
+      transition: padding-top 0.1s ease-out;
     }
 
     /* ------------------ SECTIONS ------------------ */
@@ -118,14 +103,8 @@
       .banner {
         height: 30vh;
       }
-      .banner.shrink {
-        height: 15vh;
-      }
       .glass-text {
         padding: 1rem 1.5rem;
-      }
-      .banner.shrink .glass-text {
-        padding: 0.8rem 1.2rem;
       }
       .banner-content h1 {
         font-size: 1.5rem;
@@ -135,9 +114,6 @@
       }
       .site-main {
         padding-top: 30vh;
-      }
-      .banner.shrink ~ .site-main {
-        padding-top: 15vh;
       }
     }
   </style>
@@ -161,7 +137,7 @@
     <section id="gallery" class="section">
       <h2>Gallery</h2>
       <div class="grid">
-        <figure><img src="assets/images/Sunset and rain.jpg" alt=""><figcaption>Photo 1</figcaption></figure>
+        <figure><img src="assets/images/gallery1.jpg" alt=""><figcaption>Photo 1</figcaption></figure>
         <figure><img src="assets/images/gallery2.jpg" alt=""><figcaption>Photo 2</figcaption></figure>
         <figure><img src="assets/images/gallery3.jpg" alt=""><figcaption>Photo 3</figcaption></figure>
       </div>
@@ -177,24 +153,43 @@
     <small>© <span id="year"></span> Alex Photography</small>
   </footer>
 
-  <!-- JavaScript for dynamic shrinking banner -->
+  <!-- JavaScript for smooth shrinking and text movement -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
     const banner = document.querySelector('.banner');
+    const glass = document.querySelector('.glass-text');
     const main = document.querySelector('.site-main');
 
-    // Set initial padding
-    main.style.paddingTop = banner.offsetHeight + 'px';
+    const maxHeight = 50; // vh
+    const minHeight = 20; // vh
+    const maxTranslate = 0;   // glass text initial
+    const minTranslate = -20; // move up 20%
+    const maxPadding = 2; // rem
+    const minPadding = 1; // rem
+    const maxScroll = 300; // scroll distance over which effect occurs
+
+    // set initial padding for content
+    main.style.paddingTop = maxHeight + 'vh';
 
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        banner.classList.add('shrink');
-        main.style.paddingTop = banner.offsetHeight + 'px';
-      } else {
-        banner.classList.remove('shrink');
-        main.style.paddingTop = banner.offsetHeight + 'px';
-      }
+      const scrollY = window.scrollY;
+      const progress = Math.min(scrollY / maxScroll, 1);
+
+      // banner height
+      const newHeight = maxHeight - (maxHeight - minHeight) * progress;
+      banner.style.height = newHeight + 'vh';
+
+      // glass text move up
+      const translateY = maxTranslate + (minTranslate - maxTranslate) * progress;
+      glass.style.transform = `translateY(${translateY}%)`;
+
+      // glass text padding
+      const newPadding = maxPadding - (maxPadding - minPadding) * progress;
+      glass.style.padding = `${newPadding}rem ${newPadding * 1.5}rem`;
+
+      // main content padding
+      main.style.paddingTop = newHeight + 'vh';
     });
   </script>
 

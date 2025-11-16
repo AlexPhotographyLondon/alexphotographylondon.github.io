@@ -4,194 +4,37 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Alex Photography</title>
-
-  <style>
-    /* ------------------ RESET & BASIC ------------------ */
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background: #e6f0f3; /* pale aqua background */
-      color: #2f3e46; /* desaturated blue-grey text */
-    }
-
-    /* ------------------ FIXED BANNER ------------------ */
-    .banner {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 50vh; /* max height */
-      border-top: 3px solid #8aa29e; /* muted teal accent */
-      overflow: hidden;
-      z-index: 999;
-      transition: height 0.1s ease-out;
-    }
-
-    .banner-overlay {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #a7c5bd, #e6f0f3); /* soft blue-green gradient */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all 0.1s ease-out;
-    }
-
-    /* ------------------ GLASS TEXT ------------------ */
-    .glass-text {
-      background: rgba(255,255,255,0.25); /* translucent glass */
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 2rem 3rem;
-      border-radius: 15px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-      text-align: center;
-      color: #2f3e46;
-      transition: transform 0.1s ease-out, padding 0.1s ease-out;
-      transform: translateY(0);
-    }
-
-    /* ------------------ FADE-IN ------------------ */
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 1.5s forwards;
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    /* ------------------ MAIN CONTENT ------------------ */
-    .site-main {
-      padding-top: 50vh; /* content starts below banner */
-      transition: padding-top 0.1s ease-out;
-    }
-
-    /* ------------------ SECTIONS ------------------ */
-    .section {
-      padding: 4rem 2rem;
-    }
-
-    h2 {
-      margin-bottom: 1.5rem;
-    }
-
-    /* ------------------ GALLERY GRID ------------------ */
-    .grid {
-      display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-
-    .grid img {
-      width: 100%;
-      display: block;
-      border-radius: 8px;
-    }
-
-    /* ------------------ FOOTER ------------------ */
-    .site-footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      color: #4a4a4a;
-    }
-
-    /* ------------------ MOBILE ------------------ */
-    @media (max-width: 768px) {
-      .banner {
-        height: 30vh;
-      }
-      .glass-text {
-        padding: 1rem 1.5rem;
-      }
-      .banner-content h1 {
-        font-size: 1.5rem;
-      }
-      .banner-content p {
-        font-size: 0.9rem;
-      }
-      .site-main {
-        padding-top: 30vh;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
 
-  <!-- Fixed Banner -->
-  <header class="banner" role="banner" aria-label="Site banner">
-    <div class="banner-overlay">
-      <div class="banner-content fade-in">
-        <div class="glass-text">
-          <h1>Alex Photography</h1>
-          <p class="tag">Capturing light, mood & moments</p>
-        </div>
-      </div>
+<header class="banner">
+  <div class="banner-inner">
+    <div class="glass-text">
+      <h1>Alex Photography</h1>
+      <p>Capturing light, mood & moments</p>
     </div>
-  </header>
+  </div>
+</header>
 
-  <!-- Main content -->
-  <main class="site-main">
-    <section id="gallery" class="section">
-      <h2>Gallery</h2>
-      <div class="grid">
-        <figure><img src="assets/images/gallery1.jpg" alt=""><figcaption>Photo 1</figcaption></figure>
-        <figure><img src="assets/images/gallery2.jpg" alt=""><figcaption>Photo 2</figcaption></figure>
-        <figure><img src="assets/images/gallery3.jpg" alt=""><figcaption>Photo 3</figcaption></figure>
-      </div>
-    </section>
+<main>
+  <img class="hero-photo" src="assets/images/picture1.jpg" alt="Photo 1">
 
-    <section id="about" class="section">
-      <h2>About</h2>
-      <p>I'm Alex — learning photography. This is a clean ambient portfolio.</p>
-    </section>
-  </main>
+  <section class="section">
+    <h2>Gallery</h2>
+    <p>Your content here…</p>
+  </section>
+</main>
 
-  <footer class="site-footer">
-    <small>© <span id="year"></span> Alex Photography</small>
-  </footer>
-
-  <!-- JavaScript for smooth shrinking and text movement -->
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-
+<script>
+  // Smooth banner shrink
+  window.addEventListener('scroll', () => {
     const banner = document.querySelector('.banner');
-    const glass = document.querySelector('.glass-text');
-    const main = document.querySelector('.site-main');
-
-    const maxHeight = 50; // vh
-    const minHeight = 20; // vh
-    const maxTranslate = 0;   // glass text initial
-    const minTranslate = -20; // move up 20%
-    const maxPadding = 2; // rem
-    const minPadding = 1; // rem
-    const maxScroll = 300; // scroll distance over which effect occurs
-
-    // set initial padding for content
-    main.style.paddingTop = maxHeight + 'vh';
-
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const progress = Math.min(scrollY / maxScroll, 1);
-
-      // banner height
-      const newHeight = maxHeight - (maxHeight - minHeight) * progress;
-      banner.style.height = newHeight + 'vh';
-
-      // glass text move up
-      const translateY = maxTranslate + (minTranslate - maxTranslate) * progress;
-      glass.style.transform = `translateY(${translateY}%)`;
-
-      // glass text padding
-      const newPadding = maxPadding - (maxPadding - minPadding) * progress;
-      glass.style.padding = `${newPadding}rem ${newPadding * 1.5}rem`;
-
-      // main content padding
-      main.style.paddingTop = newHeight + 'vh';
-    });
-  </script>
+    const scrolled = window.scrollY;
+    const newHeight = Math.max(80, 280 - scrolled * 0.4);
+    banner.style.height = newHeight + "px";
+  });
+</script>
 
 </body>
 </html>

@@ -15,9 +15,9 @@
   </div>
   <button class="menu-toggle" aria-label="Open Menu">&#9776;</button>
   <nav class="menu">
-    <a href="#gallery">Gallery</a>
-    <a href="#about">About Me</a>
-    <a href="#contact">Contact</a>
+    <a href="index.html">Gallery</a>
+    <a href="about.html">About Me</a>
+    <a href="contact.html">Contact</a>
   </nav>
 </header>
 
@@ -35,19 +35,9 @@
       </div>
       <div class="image-frame">
         <img src="assets/images/Nero.jpg" alt="Nero">
-        <figcaption>Photo 3</figcaption>
+        <figcaption>Nero</figcaption>
       </div>
     </div>
-  </section>
-
-  <section id="about" class="section about">
-    <h2>About Me</h2>
-    <p>I’m Alex — exploring light and quiet moments through photography.</p>
-  </section>
-
-  <section id="contact" class="section contact">
-    <h2>Contact</h2>
-    <p>You can reach me via email: <a href="mailto:alex@example.com">alex@example.com</a></p>
   </section>
 </main>
 
@@ -58,7 +48,7 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // === SHRINKING BANNER ===
+  // SHRINKING BANNER
   const banner = document.querySelector('.banner');
   const bannerInner = document.querySelector('.banner-inner');
   const menuToggle = document.querySelector('.menu-toggle');
@@ -66,15 +56,13 @@
 
   window.addEventListener("scroll", () => {
     let scrolled = window.scrollY;
-    let newHeight = Math.max(60, 110 - scrolled * 0.3); // minimum height 60px
+    let newHeight = Math.max(60, 110 - scrolled * 0.3);
     banner.style.height = newHeight + "px";
-
-    // optional: scale down text slightly
     let scale = Math.max(0.8, 1 - scrolled * 0.0015);
     bannerInner.style.transform = `scale(${scale})`;
   });
 
-  // === MENU TOGGLE ===
+  // MENU TOGGLE
   menuToggle.addEventListener("click", () => {
     menu.classList.toggle("open");
   });

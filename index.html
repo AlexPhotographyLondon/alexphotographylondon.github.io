@@ -1,35 +1,48 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Photography</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Alex Photography</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
 
-    <!-- Fixed Banner -->
-    <header class="banner">
-        <img src="assets/images/banner.jpg.JPG" alt="Banner">
-        <div class="banner-title">
-            <h1>My Photography</h1>
-        </div>
-    </header>
+  <!-- Fixed Banner -->
+  <header class="banner" role="banner" aria-label="Site banner">
+    <img class="banner-img" src="assets/images/banner.jpg" alt="Banner">
+    <div class="banner-overlay">
+      <div class="banner-content">
+        <h1>Alex Photography</h1>
+        <p class="tag">Capturing light, mood and small moments</p>
+        <a class="cta" href="#gallery">View Gallery</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- Main Content -->
-    <main class="content">
+  <!-- Main content (pushed down by CSS padding-top) -->
+  <main class="site-main">
+    <section id="gallery" class="section">
+      <h2>Gallery</h2>
+      <div class="grid">
+        <figure><img src="assets/images/gallery1.jpg" alt=""><figcaption>Sample</figcaption></figure>
+        <figure><img src="assets/images/gallery2.jpg" alt=""><figcaption>Sample</figcaption></figure>
+        <figure><img src="assets/images/gallery3.jpg" alt=""><figcaption>Sample</figcaption></figure>
+      </div>
+    </section>
 
-        <section class="intro">
-            <p>Welcome to my photography world — a growing collection of moments, textures, and stories captured through my lens.</p>
-        </section>
+    <section id="about" class="section">
+      <h2>About</h2>
+      <p>I'm Alex — learning photography. This site showcases my work.</p>
+    </section>
+  </main>
 
-        <section class="gallery">
-            <img src="assets/images/gallery1.jpg" alt="Gallery Image">
-            <img src="assets/images/gallery2.jpg" alt="Gallery Image">
-            <img src="assets/images/gallery3.jpg" alt="Gallery Image">
-        </section>
+  <footer class="site-footer">
+    <small>© <span id="year"></span> Alex Photography</small>
+  </footer>
 
-    </main>
-
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

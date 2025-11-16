@@ -2,7 +2,7 @@
 
 /* banner height — tweak this value if you want a taller/shorter banner */
 :root {
-  --banner-height: 55vh;   /* use vh so it's responsive */
+  --banner-height:20vh;   /* use vh so it's responsive */
   --banner-max-height: 260px; /* caps on very tall screens */
 }
 

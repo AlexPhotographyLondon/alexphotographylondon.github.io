@@ -12,32 +12,49 @@
   <div class="banner-inner">
     <h1>Alex Photography</h1>
     <p>Capturing light, mood & moments</p>
+
+    <nav class="nav">
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
 </header>
 
 <main>
+
   <section id="gallery" class="section gallery">
     <h2>Gallery</h2>
     <div class="grid">
+
       <div class="image-frame">
         <img src="assets/images/Sunset and rain.jpg" alt="Sunset And Rain">
         <figcaption>Sunset And Rain</figcaption>
       </div>
+
       <div class="image-frame">
         <img src="assets/images/Ghost Building.jpg" alt="Ghost Building">
         <figcaption>Ghost Building</figcaption>
       </div>
+
       <div class="image-frame">
         <img src="assets/images/Nero.jpg" alt="Nero">
-        <figcaption>Photo 3</figcaption>
+        <figcaption>Nero</figcaption>
       </div>
+
     </div>
   </section>
 
-  <section class="section about">
+  <section id="about" class="section about">
     <h2>About Me</h2>
     <p>I’m Alex — exploring light and quiet moments through photography.</p>
   </section>
+
+  <section id="contact" class="section contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+  </section>
+
 </main>
 
 <footer class="site-footer">
@@ -47,12 +64,12 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // === SHRINKING BANNER ===
+  // SHRINKING BANNER
   const banner = document.querySelector('.banner');
 
   window.addEventListener("scroll", () => {
     let scrolled = window.scrollY;
-    let newHeight = Math.max(45, 110 - scrolled * 0.3); 
+    let newHeight = Math.max(70, 110 - scrolled * 0.3); // increased minimum
     banner.style.height = newHeight + "px";
   });
 </script>

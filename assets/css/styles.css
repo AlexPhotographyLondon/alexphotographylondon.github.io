@@ -101,7 +101,7 @@ body {
 /* === HERO SECTION === */
 .hero {
   width: 100%;
-  margin-top: 110px; /* space for header */
+  margin-top: 80px; /* space for header */
 }
 
 .hero-image {

@@ -1,22 +1,24 @@
-/* General body */
+/* General */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #0f1720; /* ambient dark */
-    color: #e6eef6; /* soft text */
+    background: #0f1720;
+    color: #e6eef6;
 }
 
-/* Header / Banner */
+/* Hero / Banner */
 .hero {
     position: relative;
     text-align: center;
     color: #bfeee0;
+    overflow: hidden;
 }
 
 .hero-img {
     width: 100%;
     height: auto;
     display: block;
+    animation: fadeIn 2s ease;
 }
 
 .hero-text {
@@ -24,17 +26,34 @@ body {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    animation: slideDown 1.5s ease;
 }
 
 .hero-text h1 {
-    font-size: 36px;
+    font-size: 48px;
     margin: 0;
 }
 
 .hero-text p {
-    font-size: 18px;
+    font-size: 20px;
     color: #a9bcc9;
     margin-top: 8px;
+}
+
+.cta {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 12px 24px;
+    background: #75c7b0;
+    color: #042026;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: 0.3s;
+}
+
+.cta:hover {
+    background: #042026;
+    color: #75c7b0;
 }
 
 /* Menu */
@@ -49,6 +68,7 @@ body {
     text-decoration: none;
     margin-left: 16px;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 .menu a:hover {
@@ -69,7 +89,7 @@ body {
 /* Gallery */
 .gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
     gap: 16px;
 }
 
@@ -77,6 +97,13 @@ body {
     width: 100%;
     height: auto;
     border-radius: 6px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.photo img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 
 .photo figcaption {
@@ -93,23 +120,20 @@ footer {
     color: #a9bcc9;
 }
 
-/* Responsive adjustments */
-@media (max-width: 800px) {
-    .hero-text h1 {
-        font-size: 28px;
-    }
+/* Animations */
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
 
-    .hero-text p {
-        font-size: 16px;
-    }
+@keyframes slideDown {
+    from {opacity:0; transform:translate(-50%, -60%);}
+    to {opacity:1; transform:translate(-50%, -50%);}
+}
 
-    .menu {
-        position: static;
-        margin-top: 10px;
-    }
-
-    .menu a {
-        margin-left: 10px;
-        font-size: 14px;
-    }
+/* Responsive */
+@media(max-width:800px){
+    .hero-text h1 { font-size:32px; }
+    .hero-text p { font-size:16px; }
+    .menu a { margin-left:10px; font-size:14px; }
 }

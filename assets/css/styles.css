@@ -1,10 +1,20 @@
+/* ------------------ RESET & BASIC ------------------ */
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: #e6f0f3; /* pale aqua background */
+  color: #2f3e46; /* desaturated blue-grey text */
+}
+
+/* ------------------ FIXED BANNER ------------------ */
 .banner {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 50vh;
-  border-top: 3px solid #d4c9b8;
+  height: 50vh; /* default desktop height */
+  border-top: 3px solid #8aa29e; /* muted teal accent */
   overflow: hidden;
   z-index: 999;
   transition: height 0.3s ease;
@@ -17,22 +27,23 @@
 .banner-overlay {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #fdf6e3, #f3e9d2);
+  background: linear-gradient(135deg, #a7c5bd, #e6f0f3); /* soft blue-green gradient */
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.3s ease;
 }
 
+/* ------------------ GLASS TEXT ------------------ */
 .glass-text {
-  background: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.25); /* translucent glass */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   padding: 2rem 3rem;
   border-radius: 15px;
   box-shadow: 0 8px 30px rgba(0,0,0,0.15);
   text-align: center;
-  color: #333;
+  color: #2f3e46; /* text color for contrast */
   transition: all 0.3s ease;
 }
 
@@ -48,7 +59,76 @@
   font-size: 0.9rem;
 }
 
+/* ------------------ FADE-IN ------------------ */
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.5s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* ------------------ MAIN CONTENT ------------------ */
 .site-main {
-  padding-top: 50vh; /* matches initial banner height */
+  padding-top: 50vh; /* content starts below banner */
   transition: padding-top 0.3s ease;
+}
+
+/* ------------------ SECTIONS ------------------ */
+.section {
+  padding: 4rem 2rem;
+}
+
+h2 {
+  margin-bottom: 1.5rem;
+}
+
+/* ------------------ GALLERY GRID ------------------ */
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.grid img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+}
+
+/* ------------------ FOOTER ------------------ */
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9rem;
+  color: #4a4a4a;
+}
+
+/* ------------------ MOBILE ------------------ */
+@media (max-width: 768px) {
+  .banner {
+    height: 30vh;
+  }
+  .banner.shrink {
+    height: 15vh;
+  }
+  .glass-text {
+    padding: 1rem 1.5rem;
+  }
+  .banner.shrink .glass-text {
+    padding: 0.8rem 1.2rem;
+  }
+  .banner-content h1 {
+    font-size: 1.5rem;
+  }
+  .banner-content p {
+    font-size: 0.9rem;
+  }
+  .site-main {
+    padding-top: 30vh;
+  }
+  .banner.shrink ~ .site-main {
+    padding-top: 15vh;
+  }
 }

@@ -1,67 +1,63 @@
-/* Global ----------------------------------------------------- */
-html {
-  scroll-behavior: smooth;   /* smooth scrolling */
+/* Ambient Palette #2 */
+:root {
+  --cream-light: #f5ede0;
+  --cream-medium: #e7dbc7;
+  --cream-dark: #c7b8a4;
+  --text-dark: #2c2c2c;
 }
 
+/* BASE */
 body {
   margin: 0;
-  font-family: 'Helvetica', sans-serif;
-  background: #232b2b; /* Deep charcoal green */
-  color: #f0f8f8;      /* soft white-teal */
+  font-family: system-ui, sans-serif;
+  background: var(--cream-light);
+  color: var(--text-dark);
+  overflow-x: hidden;
 }
 
-/* Header ----------------------------------------------------- */
-header {
+main {
+  padding-top: 300px; /* creates space under the fixed banner */
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 80px;
+}
+
+/* FIXED SHRINKING BANNER */
+.banner {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   height: 280px;
-  background: rgba(30, 40, 40, 0.45);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
+  background: linear-gradient(135deg, var(--cream-light), var(--cream-medium));
+  border-bottom: 1px solid var(--cream-dark);
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  transition: height 0.4s ease;
+  justify-content: center;
+  transition: height 0.25s ease-out;
   z-index: 999;
-  overflow: hidden;
 }
 
-header.shrink {
-  height: 110px;
-}
-
-/* Banner Image ---------------------------------------------- */
-.banner-img {
-  position: absolute;
-  top: 0;
-  left: 0;
+/* Banner content wrapper */
+.banner-inner {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -2;
+  max-width: 900px;
+  padding: 20px;
 }
 
-/* Glass Text ------------------------------------------------- */
+/* Floating glass effect */
 .glass-text {
-  font-size: 3.8rem;
-  padding: 22px 40px;
-  border-radius: 14px;
-
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-
-  color: #e9fafa;
-
-  animation: floatUp 1.8s ease forwards;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  padding: 20px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  animation: floatUp 1.2s ease-out forwards;
   opacity: 0;
-  transform: translateY(25px);
+  transform: translateY(20px);
 }
 
+/* Smooth upward intro */
 @keyframes floatUp {
   to {
     opacity: 1;
@@ -69,10 +65,36 @@ header.shrink {
   }
 }
 
-/* Main Content ---------------------------------------------- */
-main {
-  padding: 340px 20px 80px;
-  max-width: 900px;
-  margin: auto;
-  line-height: 1.7;
+/* Banner text */
+.glass-text h1 {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.glass-text p {
+  margin: 6px 0 0;
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+/* LARGE HERO IMAGE */
+.hero-photo {
+  width: 100vw;
+  max-width: 100%;
+  height: 75vh;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 0;
+  margin: 0 auto;
+}
+
+/* Section content */
+.section {
+  margin-top: 40px;
+}
+
+.section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
 }

@@ -184,7 +184,7 @@ body {
   border-radius: 0;
   border: 4px solid #000;   /* inner black frame */
   box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-  margin: 8px 0;            /* vertical spacing inside the frame */
+  margin: 4px 0;            /* vertical spacing inside the frame */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 

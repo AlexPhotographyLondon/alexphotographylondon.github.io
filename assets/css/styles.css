@@ -10,6 +10,7 @@ body {
   line-height: 1.5;
   background: #DEDEED;
   color: #333;
+  scroll-behavior: smooth; /* smooth scrolling for anchor links if needed */
 }
 
 /* === BANNER / HEADER === */
@@ -100,7 +101,15 @@ body {
 /* === HERO SECTION === */
 .hero {
   width: 100%;
-  margin-top: 110px; /* space for banner */
+  margin-top: 110px; /* space for header */
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
 }
 
 /* === SECTIONS === */
@@ -110,9 +119,45 @@ body {
   margin: 0 auto;
 }
 
-/* Extra spacing under the banner before the gallery starts */
-.section.gallery {
-  margin-top: 260px;
+/* === ABOUT SECTION PADDING === */
+.about {
+  padding-top: 120px; /* space from shrinking header */
+  padding-bottom: 80px;
+  text-align: center;
+  background: #f2f2f5;
+}
+
+.about h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.about p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* === CONTACT SECTION PADDING === */
+.contact {
+  padding-top: 120px; /* space from shrinking header */
+  padding-bottom: 80px;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.contact p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #444;
 }
 
 /* === GALLERY GRID === */
@@ -122,7 +167,6 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-/* === DOUBLE FRAME FOR GALLERY IMAGES === */
 .image-frame {
   border: 8px solid #fff; /* outer white frame */
   padding: 4px; /* space between white and black frame */
@@ -148,6 +192,11 @@ body {
   margin-top: 8px;
   font-size: 0.9rem;
   color: #333;
+}
+
+/* Extra spacing under the banner before the gallery starts */
+.section.gallery {
+  margin-top: 260px;
 }
 
 /* === FOOTER === */
@@ -184,5 +233,11 @@ body {
   .menu {
     top: 50px;
     right: 15px;
+  }
+
+  .about,
+  .contact {
+    padding-top: 100px;
+    padding-bottom: 60px;
   }
 }

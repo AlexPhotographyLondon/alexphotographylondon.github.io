@@ -2,39 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Alex Photography</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 <body>
 
-<header class="banner">
-  <div class="banner-inner">
-    <div class="glass-text">
-      <h1>Alex Photography</h1>
-      <p>Capturing light, mood & moments</p>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title">Alex Photography</h1>
+      <p class="site-tagline">Capturing light, mood & moments</p>
     </div>
-  </div>
-</header>
+  </header>
 
-<main>
-  <img class="hero-photo" src="assets/images/Sunset and rain.jpg" alt="Photo 1">
+  <main class="site-main">
+    <section class="hero">
+      <img class="hero-image" src="assets/images/hero-photo.jpg" alt="Hero photo">
+    </section>
 
-  <section class="section">
-    <h2>Gallery</h2>
-    <p>Your content here…</p>
-  </section>
-</main>
+    <section id="gallery" class="section gallery">
+      <h2>Gallery</h2>
+      <div class="grid">
+        <figure><img src="assets/images/gallery1.jpg" alt=""><figcaption>Photo 1</figcaption></figure>
+        <figure><img src="assets/images/gallery2.jpg" alt=""><figcaption>Photo 2</figcaption></figure>
+        <figure><img src="assets/images/gallery3.jpg" alt=""><figcaption>Photo 3</figcaption></figure>
+        <!-- Add more figures as needed -->
+      </div>
+    </section>
 
-<script>
-  // Smooth banner shrink
-  window.addEventListener('scroll', () => {
-    const banner = document.querySelector('.banner');
-    const scrolled = window.scrollY;
-    const newHeight = Math.max(80, 280 - scrolled * 0.4);
-    banner.style.height = newHeight + "px";
-  });
-</script>
+    <section id="about" class="section about">
+      <h2>About Me</h2>
+      <p>Hi, I’m Alex—a photographer exploring light, emotion, and the quiet moments.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>© <span id="year"></span> Alex Photography</small>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Shrink header on scroll
+    const header = document.querySelector('.site-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        header.classList.add('shrink');
+      } else {
+        header.classList.remove('shrink');
+      }
+    });
+  </script>
 
 </body>
 </html>

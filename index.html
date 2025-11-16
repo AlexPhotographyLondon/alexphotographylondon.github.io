@@ -5,13 +5,161 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Alex Photography</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    /* ------------------ COMPLETE CSS ------------------ */
+
+    /* Reset and basic styling */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #f8f6f0;
+      color: #333;
+    }
+
+    /* Fixed Banner */
+    .banner {
+      position: fixed; /* stay at top */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50vh; /* default desktop height */
+      border-top: 3px solid #d4c9b8; /* thin modern top border */
+      overflow: hidden;
+      z-index: 999;
+      transition: height 0.3s ease;
+    }
+
+    .banner-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #fdf6e3, #f3e9d2); /* cream gradient */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .banner-content {
+      text-align: center;
+      width: 100%;
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Floating glass effect */
+    .glass-text {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 2rem 3rem;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      transition: all 0.3s ease;
+      color: #333;
+    }
+
+    /* Shrinking banner on scroll */
+    .banner.shrink {
+      height: 20vh; /* smaller height on scroll */
+    }
+
+    .banner.shrink .glass-text {
+      padding: 1rem 2rem;
+    }
+
+    .banner.shrink h1 {
+      font-size: 1.5rem;
+    }
+
+    .banner.shrink .tag {
+      font-size: 0.9rem;
+    }
+
+    /* Main content starts below banner */
+    .site-main {
+      margin-top: 50vh; /* push content below banner */
+      transition: margin-top 0.3s ease;
+    }
+
+    .banner.shrink ~ .site-main {
+      margin-top: 20vh;
+    }
+
+    /* Section styling */
+    .section {
+      padding: 4rem 2rem;
+    }
+
+    h2 {
+      margin-bottom: 1.5rem;
+    }
+
+    /* Gallery grid */
+    .grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .grid img {
+      width: 100%;
+      display: block;
+      border-radius: 8px;
+    }
+
+    /* Footer */
+    .site-footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .banner {
+        height: 30vh;
+      }
+      .banner.shrink {
+        height: 15vh;
+      }
+      .glass-text {
+        padding: 1rem 1.5rem;
+      }
+      .banner.shrink .glass-text {
+        padding: 0.8rem 1.2rem;
+      }
+      .banner-content h1 {
+        font-size: 1.5rem;
+      }
+      .banner-content p {
+        font-size: 0.9rem;
+      }
+      .site-main {
+        margin-top: 30vh;
+      }
+      .banner.shrink ~ .site-main {
+        margin-top: 15vh;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Banner -->
+  <!-- Fixed Banner -->
   <header class="banner" role="banner" aria-label="Site banner">
-    <div class="banner-frame"></div>
-
     <div class="banner-overlay">
       <div class="banner-content fade-in">
         <div class="glass-text">
@@ -43,19 +191,19 @@
     <small>© <span id="year"></span> Alex Photography</small>
   </footer>
 
+  <!-- JavaScript for shrinking banner -->
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-  <script>
-  const banner = document.querySelector('.banner');
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) { // shrink after scrolling 50px
-      banner.classList.add('shrink');
-    } else {
-      banner.classList.remove('shrink');
-    }
-  });
-</script>
+    const banner = document.querySelector('.banner');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) { // shrink after scrolling 50px
+        banner.classList.add('shrink');
+      } else {
+        banner.classList.remove('shrink');
+      }
+    });
+  </script>
+
 </body>
 </html>

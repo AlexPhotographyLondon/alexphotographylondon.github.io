@@ -1,81 +1,104 @@
-/* Reset & Basics */
-body {
-    margin: 0;
-    font-family: system-ui, Arial, sans-serif;
-    background-color: #0b0b0b;
-    color: #eee;
+/* -- Base -- */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:#eaf3f7;background:#061018}
+
+/* -- Banner (fixed) -- */
+/* height is given in vh so it is responsive; max-height controls extreme desktop size */
+.banner{
+  position:fixed;
+  inset:0 0 auto 0;        /* top:0; left/right:0 */
+  height:55vh;             /* visible banner area */
+  max-height:560px;        /* don't grow beyond this on large screens */
+  z-index:1000;
+  overflow:hidden;
+  display:block;
+  background:#07111a;
 }
 
-/* Fixed Banner */
-.banner {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 40vh;
-    overflow: hidden;
-    z-index: 1000;
+/* The image MUST be sized to cover the banner area */
+.banner-img{
+  width:100%;
+  height:100%;
+  object-fit:cover;        /* keeps image covering the area (no pushing) */
+  display:block;
+  transform:scale(1.02);   /* tiny scale for cinematic look */
+  will-change:transform;
+  transition:transform .6s ease;
 }
 
-.banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.75;
+/* overlay to darken image and contain text */
+.banner-overlay{
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(180deg, rgba(3,6,8,0.28), rgba(3,6,8,0.52));
+  pointer-events:none; /* allows clicks to pass to CTA if needed */
 }
 
-.banner-title {
-    position: absolute;
-    bottom: 15%;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
+/* banner text container */
+.banner-content{
+  pointer-events:auto;
+  text-align:center;
+  color:#e6f7f0;
+  padding:28px;
+  max-width:1000px;
 }
 
-.banner-title h1 {
-    font-size: 3rem;
-    color: white;
-    letter-spacing: 3px;
-    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+/* title and tagline */
+.banner-content h1{
+  margin:0 0 8px;
+  font-size:clamp(28px, 5vw, 48px); /* responsive sizing */
+  letter-spacing:0.6px;
+  text-shadow:0 8px 24px rgba(0,0,0,0.6);
+}
+.banner-content .tag{
+  margin:0 0 14px;
+  color:#b6d7cf;
+  font-size:clamp(14px, 1.6vw, 18px);
 }
 
-/* Content starts after banner */
-.content {
-    padding-top: 45vh; /* pushes content under fixed banner */
-    animation: fadein 1.2s ease;
+/* CTA */
+.cta{
+  display:inline-block;
+  background:linear-gradient(90deg,#6fd2b8,#78aee0);
+  color:#042026;
+  padding:10px 18px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:600;
+  pointer-events:auto;
+  box-shadow:0 8px 28px rgba(6,12,14,0.45);
 }
 
-/* Intro text */
-.intro {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-    font-size: 1.2rem;
-    opacity: 0.9;
+/* subtle parallax-ish zoom on hover (desktop) */
+.banner:hover .banner-img{ transform:scale(1.06); }
+
+/* -- Main content: push below the fixed banner -- */
+/* This is the key: content must start after the banner area */
+.site-main{
+  padding-top:calc(55vh + 24px);  /* same as .banner height + a little gap */
+  max-width:1100px;
+  margin:0 auto;
+  padding-left:20px;
+  padding-right:20px;
 }
 
-/* Gallery Grid */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 14px;
-    padding: 20px;
+/* adjust for large displays where max-height applied */
+@media(min-height:900px){
+  .site-main{ padding-top:calc(560px + 24px); } /* match max-height */
 }
 
-.gallery img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-    border-radius: 8px;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-}
+/* -- Sections & Gallery -- */
+.section{ padding:28px 0; color:#cfe6e1 }
+.grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; align-items:start }
+.grid img{ width:100%; height:260px; object-fit:cover; border-radius:8px; transition:transform .35s ease, box-shadow .35s ease }
+.grid img:hover{ transform:scale(1.03); box-shadow:0 18px 40px rgba(2,6,10,0.6) }
 
-.gallery img:hover {
-    transform: scale(1.03);
-    opacity: 0.8;
-}
+/* footer */
+.site-footer{ text-align:center; padding:36px 20px; color:#98b7b0 }
 
-/* Soft fade animation */
-@keyframes fadein {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
+/* -- Mobile tweaks -- */
+@media (max-width:520px){
+  .banner{ height:48vh } /* slightly smaller on small phones */
+  .site-main{ padding-top:calc(48vh + 20px) }
+  .grid img{ height:180px }
+  .banner-content h1{ font-size:22px }
 }

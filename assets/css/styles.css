@@ -63,7 +63,7 @@ body {
 
 /* Extra spacing under the banner before the gallery starts */
 .section.gallery {
-  margin-top: 300px; /* you can increase or decrease if needed */
+  margin-top: 260px; /* you can increase or decrease if needed */
 
 /* === GALLERY GRID === */
 .gallery .grid {

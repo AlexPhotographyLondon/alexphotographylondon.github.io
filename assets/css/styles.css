@@ -60,6 +60,16 @@ html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Robo
   color:#042026; text-decoration:none; font-weight:600;
   box-shadow:0 8px 28px rgba(6,12,14,0.45);
 }
+/* ——— Responsive override ——— */
+@media (max-width: 600px) {
+  header {
+    height: 80px;
+  }
+
+  main {
+    padding-top: 80px;
+  }
+}
 
 /* tiny hover zoom on desktop */
 .banner:hover .banner-img{ transform: scale(1.06); }

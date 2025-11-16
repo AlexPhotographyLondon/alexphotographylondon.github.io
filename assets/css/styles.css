@@ -3,7 +3,7 @@
 /* banner height — tweak this value if you want a taller/shorter banner */
 :root {
   --banner-height: 55vh;   /* use vh so it's responsive */
-  --banner-max-height: 560px; /* caps on very tall screens */
+  --banner-max-height: 260px; /* caps on very tall screens */
 }
 
 /* Reset basics */
@@ -56,7 +56,7 @@ html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Robo
 /* CTA */
 .cta{
   display:inline-block; padding:10px 16px; border-radius:8px;
-  background: linear-gradient(90deg,#6fd2b8,#78aee0);
+  background: linear-gradient(90deg,#f7f3e9,#78aee0);
   color:#042026; text-decoration:none; font-weight:600;
   box-shadow:0 8px 28px rgba(6,12,14,0.45);
 }

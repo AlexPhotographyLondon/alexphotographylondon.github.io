@@ -51,14 +51,14 @@ body {
 /* === LOGO INSIDE HEADER === */
 .logo-container {
   position: absolute;
-  left: 20px;
+  left: 15px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 1200;
 }
 
 .logo {
-  width: 40px;          /* smaller width */
+  width: 50px;          /* smaller width */
   height: auto;         /* keep aspect ratio */
   object-fit: contain;  /* preserve transparent background */
   border-radius: 0;     /* remove circular crop */

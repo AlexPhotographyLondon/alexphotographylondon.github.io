@@ -121,23 +121,22 @@ body {
 
 /* === ABOUT SECTION PADDING === */
 .about {
+  background: linear-gradient(
+    135deg,
+    #f2f2f5 0%,   /* light neutral start */
+    #e6e6dd 100%  /* soft warm tone at end */
+  );
   padding-top: 120px;
   padding-bottom: 80px;
-  text-align: center;
-  background: #f2f2f5;
 }
 
-.about h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-}
-
-.about p {
-  font-size: 1.1rem;
-  max-width: 700px;
+.about-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+  max-width: 900px;
   margin: 0 auto;
-  line-height: 1.6;
-  color: #444;
 }
 
 /* === CONTACT SECTION PADDING === */

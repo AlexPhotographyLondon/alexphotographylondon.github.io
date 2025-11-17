@@ -184,6 +184,10 @@ body {
   color: #444;
 }
 
+.section.contact {
+  padding-top: 180px; /* adjust to match header height + spacing */
+}
+
 /* === FOOTER === */
 .site-footer {
   text-align: center;

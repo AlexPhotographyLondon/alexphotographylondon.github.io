@@ -125,16 +125,16 @@ body {
   font-weight: 500;
 }
 
-/* === GALLERY GRID (UPDATED) === */
+/* === GALLERY GRID (BASE) === */
 .gallery .grid {
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* bigger by default */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   grid-auto-rows: auto;
   align-items: start;
 }
 
-/* Large screen: even bigger images */
+/* Larger screens slightly boost size */
 @media (min-width: 1200px) {
   .gallery .grid {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -257,31 +257,28 @@ body {
   .menu { right: 12px; top: 50px; }
 }
 
-
-/* === DESKTOP IMAGE EXPANSION === */
+/* === DESKTOP IMAGE EXPANSION (ENHANCED) === */
 @media (min-width: 1024px) {
 
-  /* Widen the gallery container */
+  /* Wider gallery for big-screen presence */
   .section.gallery {
-    max-width: 1400px; /* previously 900px */
-    padding-left: 40px;
-    padding-right: 40px;
+    max-width: 1600px;
+    padding-left: 50px;
+    padding-right: 50px;
   }
 
-  /* Make each image card larger */
+  /* Much larger images */
   .gallery .grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 24px; /* a bit more spacing between images */
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 32px;
   }
 
-  /* Slightly bigger image frame padding (floating feeling) */
   .image-frame {
-    border-width: 10px;
-    padding: 6px;
+    border-width: 12px;
+    padding: 8px;
   }
 
-  /* Bigger images inside frames */
   .image-frame img {
-    border-width: 5px;
+    border-width: 6px;
   }
 }

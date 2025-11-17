@@ -11,7 +11,6 @@ window.addEventListener("scroll", () => {
   let scrolled = window.scrollY;
   let newHeight = Math.max(60, 110 - scrolled * 0.3);
   banner.style.height = newHeight + "px";
-
   let scale = Math.max(0.8, 1 - scrolled * 0.0015);
   bannerInner.style.transform = `scale(${scale})`;
 });
@@ -21,30 +20,37 @@ menuToggle.addEventListener("click", () => {
   menu.classList.toggle("open");
 });
 
-// === LIGHTBOX ===
-const modal = document.getElementById("image-modal");
-const modalImg = document.getElementById("modal-img");
-const closeBtn = document.querySelector(".modal-close");
-
+// === ZOOM INSIDE IMAGE + DRAG ===
 document.querySelectorAll(".zoomable").forEach(img => {
+  let isZoomed = false;
+  let startX, startY, scrollLeft, scrollTop;
+
   img.addEventListener("click", () => {
-    modal.style.display = "flex";
-    modalImg.src = img.src;
+    isZoomed = !isZoomed;
+    img.classList.toggle("zoomed");
+    if (!isZoomed) {
+      img.style.transform = "scale(1)";
+      img.parentElement.scrollLeft = 0;
+      img.parentElement.scrollTop = 0;
+    }
+  });
+
+  img.parentElement.addEventListener("mousemove", e => {
+    if (!isZoomed) return;
+    const rect = img.parentElement.getBoundingClientRect();
+    const x = e.clientX - rect.left; // mouse X inside container
+    const y = e.clientY - rect.top;  // mouse Y inside container
+
+    const moveX = ((x / rect.width) * (img.width * 2 - rect.width)) * -1;
+    const moveY = ((y / rect.height) * (img.height * 2 - rect.height)) * -1;
+
+    img.style.transformOrigin = `${x}px ${y}px`;
   });
 });
-
-closeBtn.onclick = () => {
-  modal.style.display = "none";
-};
-
-modal.onclick = (e) => {
-  if (e.target === modal) modal.style.display = "none";
-};
 
 // === FADE-IN ON SCROLL ===
 document.addEventListener("DOMContentLoaded", () => {
   const elements = document.querySelectorAll('.fade-in');
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -53,6 +59,5 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }, { threshold: 0.2 });
-
   elements.forEach(el => observer.observe(el));
 });

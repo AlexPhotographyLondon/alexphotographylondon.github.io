@@ -58,12 +58,12 @@ body {
 }
 
 .logo {
-  width: 50px;          /* smaller width */
-  height: auto;         /* keep aspect ratio */
-  object-fit: contain;  /* preserve transparent background */
-  border-radius: 0;     /* remove circular crop */
-  border: none;         /* remove border for transparent background */
-  box-shadow: none;     /* no shadow */
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
 }
 
 /* === MENU BUTTON === */
@@ -125,13 +125,20 @@ body {
   font-weight: 500;
 }
 
-/* === GALLERY GRID === */
+/* === GALLERY GRID (UPDATED) === */
 .gallery .grid {
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* bigger by default */
   grid-auto-rows: auto;
   align-items: start;
+}
+
+/* Large screen: even bigger images */
+@media (min-width: 1200px) {
+  .gallery .grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
 }
 
 .image-frame {
@@ -185,7 +192,7 @@ body {
 }
 
 .section.contact {
-  padding-top: 120px; /* adjust to match header height + spacing */
+  padding-top: 120px;
 }
 
 /* === FOOTER === */

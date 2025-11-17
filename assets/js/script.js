@@ -1,58 +1,51 @@
-// Set current year
+// === SET CURRENT YEAR IN FOOTER ===
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// === SHRINKING BANNER ===
-const banner = document.querySelector('.banner');
-const bannerInner = document.querySelector('.banner-inner');
+// === MENU TOGGLE ===
 const menuToggle = document.querySelector('.menu-toggle');
 const menu = document.querySelector('.menu');
 
-window.addEventListener("scroll", () => {
-  let scrolled = window.scrollY;
-  let newHeight = Math.max(60, 110 - scrolled * 0.3);
-  banner.style.height = newHeight + "px";
-
-  let scale = Math.max(0.8, 1 - scrolled * 0.0015);
-  bannerInner.style.transform = `scale(${scale})`;
+menuToggle.addEventListener('click', () => {
+  menu.classList.toggle('open');
 });
 
-// === MOBILE MENU ===
-menuToggle.addEventListener("click", () => {
-  menu.classList.toggle("open");
-});
+// === LIGHTBOX MODAL ===
+const modal = document.getElementById('image-modal');
+const modalImg = document.getElementById('modal-img');
+const closeBtn = document.querySelector('.modal-close');
 
-// === LIGHTBOX ===
-const modal = document.getElementById("image-modal");
-const modalImg = document.getElementById("modal-img");
-const closeBtn = document.querySelector(".modal-close");
-
-document.querySelectorAll(".zoomable").forEach(img => {
-  img.addEventListener("click", () => {
-    modal.style.display = "flex";
+// Open modal on image click
+document.querySelectorAll('.zoomable').forEach(img => {
+  img.addEventListener('click', () => {
+    modal.classList.add('open');
     modalImg.src = img.src;
   });
 });
 
-closeBtn.onclick = () => {
-  modal.style.display = "none";
-};
+// Close modal when X clicked
+closeBtn.addEventListener('click', () => {
+  modal.classList.remove('open');
+});
 
-modal.onclick = (e) => {
-  if (e.target === modal) modal.style.display = "none";
-};
+// Close modal if clicked outside image
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.classList.remove('open');
+  }
+});
 
 // === FADE-IN ON SCROLL ===
-document.addEventListener("DOMContentLoaded", () => {
-  const elements = document.querySelectorAll('.fade-in');
+document.addEventListener('DOMContentLoaded', () => {
+  const fadeEls = document.querySelectorAll('.fade-in');
 
-  const observer = new IntersectionObserver((entries) => {
+  const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+        observer.unobserve(entry.target); // animate once
       }
     });
   }, { threshold: 0.2 });
 
-  elements.forEach(el => observer.observe(el));
+  fadeEls.forEach(el => observer.observe(el));
 });

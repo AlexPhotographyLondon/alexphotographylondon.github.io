@@ -1,6 +1,3 @@
-/* === IMPORT GOOGLE FONT === */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
-
 /* === RESET & BASE === */
 * {
   box-sizing: border-box;
@@ -40,8 +37,8 @@ body {
 }
 
 .banner-inner h1 {
-  font-family: 'Playfair Display', serif; /* NEW FONT */
-  font-size: 2.2rem; /* slightly larger */
+  font-family: 'Playfair Display', serif; /* elegant header font */
+  font-size: 2rem; /* slightly increased */
   margin-bottom: 4px;
 }
 
@@ -123,33 +120,37 @@ body {
   margin: 0 auto;
 }
 
+/* === SECTION HEADERS === */
+.section h2 {
+  font-family: 'Montserrat', sans-serif; /* Montserrat for section titles */
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
 /* === ABOUT SECTION PADDING === */
 .about {
-  padding-top: 120px; /* space from shrinking header */
+  padding-top: 120px;
   padding-bottom: 80px;
   text-align: center;
   background: #f2f2f5;
 }
 
 .about-inner img {
-  width: 150px;           
-  height: 150px;          
-  object-fit: cover;      
-  border-radius: 50%;     
-  border: 4px solid #000; 
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #000;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-  margin-top: 40px;       /* space from header */
-}
-
-.about h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+  margin-top: 40px;
 }
 
 .about p {
   font-size: 1.1rem;
   max-width: 700px;
-  margin: 20px auto 0; /* space below profile image */
+  margin: 20px auto 0;
   line-height: 1.6;
   color: #444;
 }
@@ -159,11 +160,6 @@ body {
   padding-top: 120px; 
   padding-bottom: 80px;
   text-align: center;
-}
-
-.contact h2 {
-  font-size: 2rem;
-  margin-bottom: 20px;
 }
 
 .contact p {
@@ -181,18 +177,10 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
-.gallery h2 {
-  font-size: 2rem;          
-  margin-bottom: 20px;      
-  text-align: center;        
-  font-family: 'Georgia', serif; 
-  font-weight: 500;          
-}
-
 /* === DOUBLE FRAME FOR IMAGES & VIDEOS === */
 .image-frame {
-  border: 8px solid #fff;  
-  padding: 4px;             
+  border: 8px solid #fff;
+  padding: 4px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   text-align: center;
   overflow: hidden;
@@ -200,13 +188,13 @@ body {
 
 .image-frame img,
 .image-frame video {
-  display: block;           
+  display: block;
   width: 100%;
   height: auto;
   border-radius: 0;
-  border: 4px solid #000;   
+  border: 4px solid #000;
   box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-  margin: 0;            
+  margin: 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -237,7 +225,7 @@ body {
   }
 
   .banner-inner h1 {
-    font-size: 1.8rem; /* slightly smaller on mobile */
+    font-size: 1.7rem;
   }
 
   .banner-inner p {
@@ -257,43 +245,9 @@ body {
     right: 15px;
   }
 
-  .about,
-  .contact {
-    padding-top: 100px;
-    padding-bottom: 60px;
-  }
-
   .about-inner img {
     width: 120px;
     height: 120px;
     margin-top: 30px;
   }
-}
-
-/* === LIGHTBOX === */
-#lightbox {
-  position: fixed;
-  display: none;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.85);
-  justify-content: center;
-  align-items: center;
-  z-index: 50;
-  cursor: pointer;
-}
-
-#lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  border: 4px solid #fff;
-  border-radius: 4px;
-  transition: transform 0.3s ease;
-}
-
-#lightbox img:hover {
-  transform: scale(1.02);
 }

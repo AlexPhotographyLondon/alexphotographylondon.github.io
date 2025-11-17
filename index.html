@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Alex Photography</title>
   <link rel="stylesheet" href="assets/css/styles.css" />
+
   <style>
     /* === LIGHTBOX MODAL === */
     .modal {
@@ -53,6 +54,7 @@
     }
   </style>
 </head>
+
 <body>
 
 <header class="banner">
@@ -60,7 +62,9 @@
     <h1>Alex Photography</h1>
     <p>Capturing light, mood & moments</p>
   </div>
+
   <button class="menu-toggle" aria-label="Open Menu">&#9776;</button>
+
   <nav class="menu">
     <a href="index.html">Gallery</a>
     <a href="about.html">About Me</a>
@@ -71,31 +75,41 @@
 <main>
   <section id="gallery" class="section gallery">
     <h2>Gallery</h2>
+
     <div class="grid">
-      <div class="image-frame">
+
+      <div class="image-frame fade-in">
         <img src="assets/images/Sunset and rain.jpg" alt="Sunset and Rain">
       </div>
-      <div class="image-frame">
+
+      <div class="image-frame fade-in">
         <img src="assets/images/Ghost Building.jpg" alt="Ghost Building">
       </div>
-      <div class="image-frame">
+
+      <div class="image-frame fade-in">
         <img src="assets/images/Nero.jpg" alt="Nero">
       </div>
-      <div class="image-frame">
+
+      <div class="image-frame fade-in">
         <img src="assets/images/Unknown Building.jpg" alt="Unknown Building">
       </div>
-      <div class="image-frame">
+
+      <div class="image-frame fade-in">
         <img src="assets/images/Duck Sunset.jpg" alt="Duck Sunset">
       </div>
-      <div class="image-frame">
+
+      <div class="image-frame fade-in">
         <img src="assets/images/Shape.heic" alt="Shape">
       </div>
-      <div class="image-frame">
+
+      <div class="image-frame fade-in">
         <img src="assets/images/Wandle Park.heic" alt="Wandle Park">
       </div>
-      <div class="image-frame">
+
+      <div class="image-frame fade-in">
         <img src="assets/images/Light Bar.heic" alt="Light Bar">
       </div>
+
     </div>
   </section>
 </main>
@@ -113,40 +127,11 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // SHRINKING BANNER
+  /* === SHRINKING BANNER === */
   const banner = document.querySelector('.banner');
   const bannerInner = document.querySelector('.banner-inner');
   const menuToggle = document.querySelector('.menu-toggle');
   const menu = document.querySelector('.menu');
 
   window.addEventListener("scroll", () => {
-    let scrolled = window.scrollY;
-    let newHeight = Math.max(60, 110 - scrolled * 0.3);
-    banner.style.height = newHeight + "px";
-    let scale = Math.max(0.8, 1 - scrolled * 0.0015);
-    bannerInner.style.transform = `scale(${scale})`;
-  });
-
-  // MENU TOGGLE
-  menuToggle.addEventListener("click", () => {
-    menu.classList.toggle("open");
-  });
-
-  // LIGHTBOX MODAL
-  const modal = document.getElementById("image-modal");
-  const modalImg = document.getElementById("modal-img");
-  const closeBtn = document.querySelector(".modal-close");
-
-  document.querySelectorAll(".image-frame img").forEach(img => {
-    img.addEventListener("click", () => {
-      modal.style.display = "flex";
-      modalImg.src = img.src;
-    });
-  });
-
-  closeBtn.onclick = () => { modal.style.display = "none"; };
-  modal.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
-</script>
-
-</body>
-</html>
+    let scrolled = window.scroll

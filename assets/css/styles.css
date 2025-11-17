@@ -256,3 +256,32 @@ body {
   .about-inner img { width: 120px; height: 120px; margin-top: 30px; }
   .menu { right: 12px; top: 50px; }
 }
+
+
+/* === DESKTOP IMAGE EXPANSION === */
+@media (min-width: 1024px) {
+
+  /* Widen the gallery container */
+  .section.gallery {
+    max-width: 1400px; /* previously 900px */
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  /* Make each image card larger */
+  .gallery .grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px; /* a bit more spacing between images */
+  }
+
+  /* Slightly bigger image frame padding (floating feeling) */
+  .image-frame {
+    border-width: 10px;
+    padding: 6px;
+  }
+
+  /* Bigger images inside frames */
+  .image-frame img {
+    border-width: 5px;
+  }
+}

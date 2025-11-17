@@ -24,8 +24,15 @@
 <main>
   <section class="section about">
     <h2>About Me</h2>
-    <p>I’m Alex, a Breton living in London. I have decided to start picturing the world around me and show my works. Taking good pictures take years of experience, and I am just starting this journey. Come in the adventure with me.</p>
-    <p>Originally from Brittany, France, I came in London more than 10 years ago and never left. Since I foudnthe love of my life, did an expetional some i have grown roots to stay.</p>
+    <div class="about-inner">
+      <img src="assets/images/profile.jpg" alt="Alex Portrait">
+      <p>
+        I’m Alex, a Breton living in London. I’ve started capturing the world around me and sharing my perspective through photography. 
+        Taking good pictures is a journey that requires years of practice, and I am just beginning this adventure. 
+        Originally from Brittany, France, I moved to London over 10 years ago. Here, I found the love of my life and raised an exceptional son, 
+        and now I’ve grown roots that keep me here. Join me on this visual journey as I explore light, mood, and moments in everyday life.
+      </p>
+    </div>
   </section>
 </main>
 
@@ -36,6 +43,7 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  // SHRINKING BANNER
   const banner = document.querySelector('.banner');
   const bannerInner = document.querySelector('.banner-inner');
   const menuToggle = document.querySelector('.menu-toggle');
@@ -49,6 +57,7 @@
     bannerInner.style.transform = `scale(${scale})`;
   });
 
+  // MENU TOGGLE
   menuToggle.addEventListener("click", () => {
     menu.classList.toggle("open");
   });

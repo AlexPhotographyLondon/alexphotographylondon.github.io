@@ -7,7 +7,7 @@
 
   <link rel="stylesheet" href="assets/css/styles.css" />
 
-  <!-- Lightbox styles (kept inline for convenience, still valid) -->
+  <!-- Lightbox styles (inline) -->
   <style>
     .modal {
       display: none;
@@ -22,7 +22,6 @@
       justify-content: center;
       align-items: center;
     }
-
     .modal-content {
       margin: auto;
       display: block;
@@ -33,11 +32,7 @@
       border-radius: 4px;
       transition: transform 0.3s ease;
     }
-
-    .modal-content:hover {
-      transform: scale(1.02);
-    }
-
+    .modal-content:hover { transform: scale(1.02); }
     .modal-close {
       position: absolute;
       top: 20px;
@@ -52,6 +47,12 @@
 <body>
 
 <header class="banner">
+
+  <!-- NEW LOGO -->
+  <div class="logo-container">
+    <img src="assets/images/logo.png" alt="Logo" class="logo">
+  </div>
+
   <div class="banner-inner">
     <h1>Alex Photography</h1>
     <p>Capturing light, mood & moments</p>
@@ -118,7 +119,6 @@
   <img class="modal-content" id="modal-img">
 </div>
 
-<!-- Load JS -->
 <script src="assets/js/script.js"></script>
 
 </body>

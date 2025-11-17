@@ -1,3 +1,6 @@
+/* === IMPORT GOOGLE FONT === */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
 /* === RESET & BASE === */
 * {
   box-sizing: border-box;
@@ -37,7 +40,8 @@ body {
 }
 
 .banner-inner h1 {
-  font-size: 1.8rem;
+  font-family: 'Playfair Display', serif; /* NEW FONT */
+  font-size: 2.2rem; /* slightly larger */
   margin-bottom: 4px;
 }
 
@@ -233,7 +237,7 @@ body {
   }
 
   .banner-inner h1 {
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* slightly smaller on mobile */
   }
 
   .banner-inner p {
@@ -265,6 +269,7 @@ body {
     margin-top: 30px;
   }
 }
+
 /* === LIGHTBOX === */
 #lightbox {
   position: fixed;

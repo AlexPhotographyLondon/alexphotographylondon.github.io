@@ -11,6 +11,7 @@ window.addEventListener("scroll", () => {
   let scrolled = window.scrollY;
   let newHeight = Math.max(60, 110 - scrolled * 0.3);
   banner.style.height = newHeight + "px";
+
   let scale = Math.max(0.8, 1 - scrolled * 0.0015);
   bannerInner.style.transform = `scale(${scale})`;
 });
@@ -20,37 +21,76 @@ menuToggle.addEventListener("click", () => {
   menu.classList.toggle("open");
 });
 
-// === ZOOM INSIDE IMAGE + DRAG ===
+// === LIGHTBOX / MODAL WITH ZOOM & PAN ===
+const modal = document.getElementById("image-modal");
+const modalImg = document.getElementById("modal-img");
+const closeBtn = document.querySelector(".modal-close");
+
+let isZoomed = false;
+let startX = 0, startY = 0;
+let currentX = 0, currentY = 0;
+
+// Open modal
 document.querySelectorAll(".zoomable").forEach(img => {
-  let isZoomed = false;
-  let startX, startY, scrollLeft, scrollTop;
-
   img.addEventListener("click", () => {
-    isZoomed = !isZoomed;
-    img.classList.toggle("zoomed");
-    if (!isZoomed) {
-      img.style.transform = "scale(1)";
-      img.parentElement.scrollLeft = 0;
-      img.parentElement.scrollTop = 0;
-    }
+    modal.style.display = "flex";
+    modalImg.src = img.src;
+    modalImg.classList.remove("zoomed");
+    modalImg.style.transform = "translate(0px, 0px) scale(1)";
+    isZoomed = false;
+    currentX = 0;
+    currentY = 0;
   });
+});
 
-  img.parentElement.addEventListener("mousemove", e => {
-    if (!isZoomed) return;
-    const rect = img.parentElement.getBoundingClientRect();
-    const x = e.clientX - rect.left; // mouse X inside container
-    const y = e.clientY - rect.top;  // mouse Y inside container
+// Close modal
+closeBtn.onclick = () => modal.style.display = "none";
+modal.onclick = (e) => {
+  if (e.target === modal) modal.style.display = "none";
+};
 
-    const moveX = ((x / rect.width) * (img.width * 2 - rect.width)) * -1;
-    const moveY = ((y / rect.height) * (img.height * 2 - rect.height)) * -1;
+// Toggle zoom on click inside modal
+modalImg.addEventListener("click", (e) => {
+  e.stopPropagation();
+  if (!isZoomed) {
+    modalImg.classList.add("zoomed");
+    modalImg.style.transform = "scale(2)";
+    isZoomed = true;
+  } else {
+    modalImg.classList.remove("zoomed");
+    modalImg.style.transform = "translate(0px, 0px) scale(1)";
+    currentX = 0;
+    currentY = 0;
+    isZoomed = false;
+  }
+});
 
-    img.style.transformOrigin = `${x}px ${y}px`;
-  });
+// Pan when zoomed
+modalImg.addEventListener("mousedown", (e) => {
+  if (!isZoomed) return;
+  e.preventDefault();
+  startX = e.clientX - currentX;
+  startY = e.clientY - currentY;
+
+  function onMouseMove(e) {
+    currentX = e.clientX - startX;
+    currentY = e.clientY - startY;
+    modalImg.style.transform = `translate(${currentX}px, ${currentY}px) scale(2)`;
+  }
+
+  function onMouseUp() {
+    window.removeEventListener("mousemove", onMouseMove);
+    window.removeEventListener("mouseup", onMouseUp);
+  }
+
+  window.addEventListener("mousemove", onMouseMove);
+  window.addEventListener("mouseup", onMouseUp);
 });
 
 // === FADE-IN ON SCROLL ===
 document.addEventListener("DOMContentLoaded", () => {
   const elements = document.querySelectorAll('.fade-in');
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -59,5 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }, { threshold: 0.2 });
+
   elements.forEach(el => observer.observe(el));
 });

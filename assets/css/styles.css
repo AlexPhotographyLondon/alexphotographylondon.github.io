@@ -49,6 +49,7 @@ body {
 }
 
 /* === LOGO INSIDE HEADER === */
+/* === LOGO INSIDE HEADER === */
 .logo-container {
   position: absolute;
   left: 20px;
@@ -58,12 +59,12 @@ body {
 }
 
 .logo {
-  width: 55px;
-  height: 55px;
-  object-fit: contain;
-  border-radius: 50%;
-  border: 2px solid #000;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  width: 40px;          /* smaller width */
+  height: auto;         /* keep aspect ratio */
+  object-fit: contain;  /* preserve transparent background */
+  border-radius: 0;     /* remove circular crop */
+  border: none;         /* remove border for transparent background */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* subtle shadow */
 }
 
 /* === MENU BUTTON === */

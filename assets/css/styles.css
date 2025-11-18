@@ -151,19 +151,22 @@ body {
 }
 
 /* === LOCATION LABEL === */
-.location-label {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  background: rgba(0,0,0,0.60);
+.location-label,
+.modal-location {
+  font-family: 'Montserrat', sans-serif; /* match section h2 */
+  font-weight: 500;
+  text-transform: none; /* remove uppercase */
+  font-size: 0.9rem;
   color: #fff;
+  background: rgba(0,0,0,0.6);
   padding: 6px 10px;
-  font-size: 0.8rem;
   border-radius: 4px;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  pointer-events: none;
+  display: block;
+  text-align: center; /* center under image */
+  margin-top: 6px;
+  position: static; /* remove absolute */
+  opacity: 1; /* always visible on mobile */
+  transform: none;
 }
 
 /* Desktop hover reveal */

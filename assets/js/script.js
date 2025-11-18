@@ -27,15 +27,15 @@ let isZoomed = false;
 let startX = 0, startY = 0;
 let currentX = 0, currentY = 0;
 
-// Utility function: Capitalize first letter of each word
+// Capitalize first letter of each word
 function capitalizeWords(str) {
   return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
 }
 
-// Open modal & show location under image on mobile
+// Open modal & show location under image (mobile & desktop click)
 document.querySelectorAll(".zoomable").forEach(img => {
   img.addEventListener("click", () => {
-    // Remove old modal location
+    // Remove previous modal location
     const existing = document.querySelector(".modal-location");
     if (existing) existing.remove();
 
@@ -47,7 +47,7 @@ document.querySelectorAll(".zoomable").forEach(img => {
     currentX = 0;
     currentY = 0;
 
-    // Mobile location under image
+    // Modal location div under image
     const loc = document.createElement("div");
     loc.className = "modal-location";
     loc.textContent = capitalizeWords(img.dataset.location);
@@ -58,6 +58,7 @@ document.querySelectorAll(".zoomable").forEach(img => {
     loc.style.fontFamily = "'Montserrat', sans-serif";
     loc.style.fontWeight = "500";
 
+    // Append under the image
     modalImg.insertAdjacentElement("afterend", loc);
   });
 });
@@ -68,7 +69,6 @@ closeBtn.onclick = () => {
   const loc = document.querySelector(".modal-location");
   if (loc) loc.remove();
 };
-
 modal.onclick = e => {
   if (e.target === modal) {
     modal.style.display = "none";
@@ -77,7 +77,7 @@ modal.onclick = e => {
   }
 };
 
-// Toggle zoom
+// Zoom toggle
 modalImg.addEventListener("click", e => {
   e.stopPropagation();
   if (!isZoomed) {
@@ -133,7 +133,7 @@ document.querySelectorAll(".image-frame").forEach(frame => {
   const img = frame.querySelector(".zoomable");
   const location = capitalizeWords(img.dataset.location);
 
-  // Create hover label
+  // Create hover label at bottom
   const label = document.createElement("div");
   label.className = "location-label";
   label.textContent = location;

@@ -312,3 +312,15 @@ body {
   .image-frame { border-width: 12px; padding: 8px; }
   .image-frame img { border-width: 6px; }
 }
+
+/* Modal location text → same style as section titles (h2) */
+.modal-location {
+  font-family: inherit;         /* same font as <h2> */
+  font-size: 1.6rem;            /* match your h2 size */
+  font-weight: 300;             /* same thin elegant weight */
+  letter-spacing: 2px;          /* matches the spaced title style */
+  text-transform: uppercase;    /* same visual feel */
+  text-align: center;
+  margin-top: 14px;
+  color: #eaeaea;               /* stays readable on dark modal */
+}

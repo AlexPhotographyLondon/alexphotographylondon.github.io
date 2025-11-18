@@ -4,13 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Alex Photography</title>
-
   <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
 
 <body>
 
 <header class="banner">
+  <!-- Logo -->
   <div class="logo-container">
     <img src="assets/images/Logo.svg" alt="Logo" class="logo">
   </div>
@@ -34,132 +34,15 @@
     <h2>Gallery</h2>
     <div class="grid">
 
-      <!-- 1 — Wandle Park, Croydon -->
+      <!-- Example image frame -->
       <div class="image-frame fade-in">
         <img class="zoomable" src="assets/images/Tree W.jpeg" alt="Tree and bench"
              data-location="Wandle Park, Croydon">
+        <div class="location-label">Wandle Park, Croydon</div>
       </div>
 
-      <!-- 2 — West Croydon -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Sunset_and_rain_W.jpg" alt="Sunset and Rain"
-             data-location="West Croydon">
-      </div>
-
-      <!-- 3 — West Croydon -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Ghost_Building_W.jpg" alt="Ghost Building"
-             data-location="West Croydon">
-      </div>
-
-      <!-- 4 — West Croydon -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Nero W.jpeg" alt="Nero"
-             data-location="West Croydon">
-      </div>
-
-      <!-- 5 — West Croydon -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Chimney W.jpeg" alt="Rooftop Sunset"
-             data-location="West Croydon">
-      </div>
-
-      <!-- 6 — North End, Croydon -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Building and Windows W.jpeg" alt="Unknown Building"
-             data-location="North End, Croydon">
-      </div>
-
-      <!-- 7 — Crystal Palace Park -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Duck Alone Watermarked.jpeg" alt="Duck Sunset"
-             data-location="Crystal Palace Park, Croydon">
-      </div>
-
-      <!-- 8 — Waddon -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Shape Watermarked 2.jpeg" alt="Shape"
-             data-location="Waddon, Croydon">
-      </div>
-
-      <!-- 9 — East Croydon -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Train Trail W.jpeg" alt="Train"
-             data-location="East Croydon">
-      </div>
-
-      <!-- 10 — Urey Street -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Bar Light W2.jpeg" alt="Light Bar"
-             data-location="Urey Street, Croydon">
-      </div>
-
-      <!-- 11 — Wandle Park -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/City Croydon W.jpeg" alt="Wandle Park"
-             data-location="Wandle Park, Croydon">
-      </div>
-
-      <!-- 12 — Brittany -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Square Sea W.jpeg" alt="Beach In Square"
-             data-location="Brittany, France">
-      </div>
-
-      <!-- 13 — West Croydon -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Red Insect W.jpeg" alt="Insect On Leaf"
-             data-location="West Croydon">
-      </div>
-
-      <!-- 14 — South Norwood -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Duck Alone W.jpeg" alt="Duck Alone"
-             data-location="South Norwood Lake and Grounds, Croydon">
-      </div>
-
-      <!-- 15 — Carnaby Street -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Pink shop W.jpeg" alt="Shops"
-             data-location="Carnaby Street, London">
-      </div>
-
-      <!-- 16 — Croydon -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/IMG_5772.jpeg" alt="Sun End Road"
-             data-location="Croydon">
-      </div>
-
-      <!-- 17 — Wandle Park -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Squirrel W.jpeg" alt="Squirrel"
-             data-location="Wandle Park, Croydon">
-      </div>
-
-      <!-- 18 — Kew Gardens -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Flower 1 W.jpeg" alt="Orange Flower"
-             data-location="Kew Gardens, London">
-      </div>
-
-      <!-- 19 — Italy -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Cygne Lake W.jpeg" alt="Cygne on lake"
-             data-location="Spiaggia Sabbianera, Italy">
-      </div>
-
-      <!-- 20 -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/Droplet W.jpeg" alt="Water Droplet"
-             data-location="Wandle Park, Croydon">
-      </div>
-
-      <!-- 21 -->
-      <div class="image-frame fade-in">
-        <img class="zoomable" src="assets/images/X Train.jpeg" alt="Train track troughs"
-             data-location="Croydon">
-      </div>
-
+      <!-- Repeat other images, make sure each has a .location-label div with same text as data-location -->
+      
     </div>
   </section>
 </main>
@@ -172,10 +55,8 @@
 <div id="image-modal" class="modal">
   <span class="modal-close">&times;</span>
   <img class="modal-content" id="modal-img">
-  <div id="modal-location" class="modal-location"></div>
 </div>
 
 <script src="assets/js/script.js"></script>
-
 </body>
 </html>

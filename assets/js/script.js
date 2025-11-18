@@ -102,3 +102,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
   elements.forEach(el => observer.observe(el));
 });
+// === IMAGE LOCATION TOOLTIP & MOBILE DISPLAY ===
+
+// Create tooltip element (desktop only)
+const tooltip = document.createElement("div");
+tooltip.className = "img-tooltip";
+tooltip.style.position = "fixed";
+tooltip.style.padding = "6px 10px";
+tooltip.style.background = "rgba(0,0,0,0.75)";
+tooltip.style.color = "white";
+tooltip.style.borderRadius = "6px";
+tooltip.style.fontSize = "0.85rem";
+tooltip.style.pointerEvents = "none";
+tooltip.style.opacity = "0";
+tooltip.style.transition = "opacity 0.2s ease";
+document.body.appendChild(tooltip);
+
+// Track hover for desktop
+document.querySelectorAll(".zoomable").forEach(img => {
+  const location = img.dataset.location;
+
+  // Desktop hover
+  img.addEventListener("mousemove", (e) => {
+    tooltip.textContent = location;
+    tooltip.style.opacity = "1";
+    tooltip.style.left = e.clientX + 15 + "px";
+    tooltip.style.top = e.clientY + 15 + "px";
+  });
+
+  img.addEventListener("mouseleave", () => {
+    tooltip.style.opacity = "0";
+  });
+
+  // MOBILE (show inside modal)
+  img.addEventListener("click", () => {
+    const existing = document.querySelector(".modal-location");
+    if (existing) existing.remove();
+
+    const loc = document.createElement("div");
+    loc.className = "modal-location";
+    loc.textContent = location;
+    loc.style.textAlign = "center";
+    loc.style.marginTop = "12px";
+    loc.style.color = "#eee";
+    loc.style.fontSize = "1rem";
+    loc.style.fontFamily = "sans-serif";
+
+    modal.appendChild(loc);
+  });
+});
+
+// Hide tooltip when modal opens
+modal.addEventListener("click", () => {
+  tooltip.style.opacity = "0";
+});
+
+

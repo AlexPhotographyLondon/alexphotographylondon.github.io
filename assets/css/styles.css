@@ -74,38 +74,42 @@ body {
 .image-frame img { display: block; width: 100%; height: auto; border-radius: 0; border: 4px solid #000; box-shadow: 0 12px 30px rgba(0,0,0,0.12); cursor: pointer; transition: transform 0.28s ease, box-shadow 0.28s ease; }
 .image-frame img:hover { transform: scale(1.02); box-shadow: 0 22px 50px rgba(0,0,0,0.18); }
 
-/* === LOCATION LABEL === */
+/* === LOCATION LABEL (desktop hover only) === */
 .location-label {
   position: absolute;
   bottom: 8px;
-  left: 8px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
   background: rgba(0,0,0,0.60);
   color: #fff;
   padding: 6px 10px;
   font-size: 0.8rem;
   border-radius: 4px;
   opacity: 0;
-  transform: translateY(6px);
   transition: opacity 0.25s ease, transform 0.25s ease;
   pointer-events: none;
-  font-family: 'Montserrat', sans-serif;  /* matches Gallery font */
+  font-family: 'Montserrat', sans-serif;
   font-weight: 500;
-  text-transform: none;  /* <-- ensure this line exists */
+  text-transform: none;
 }
 
-/* Desktop hover reveal */
-.image-frame:hover .location-label {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Mobile: label always visible (optional, e.g., if you want bottom inside frame) */
-@media (max-width: 768px) {
-  .location-label {
+/* Reveal on hover for desktop only */
+@media (hover: hover) and (pointer: fine) {
+  .image-frame:hover .location-label {
     opacity: 1;
-    background: rgba(0,0,0,0.35);
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
   }
+}
+
+/* === MODAL LOCATION === */
+.modal-location {
+  text-align: center;
+  margin-top: 12px;
+  color: #eee;
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  text-transform: none;
 }
 
 /* === ABOUT === */

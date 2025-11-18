@@ -9,14 +9,14 @@ body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.5;
   background: #C5C1B9;
-  background-image: 
+  background-image:
     repeating-linear-gradient(
       45deg,
       rgba(255,255,255,0.1),
       rgba(255,255,255,0.1) 1px,
       transparent 1px,
       transparent 5px
-      );
+    );
   color: #333;
   scroll-behavior: smooth;
 }
@@ -57,7 +57,7 @@ body {
   margin: 0;
 }
 
-/* === LOGO INSIDE HEADER === */
+/* === LOGO === */
 .logo-container {
   position: absolute;
   left: 15px;
@@ -86,7 +86,7 @@ body {
   color: #333;
 }
 
-/* === MENU LINKS (popup) === */
+/* === MENU LINKS === */
 .menu {
   position: fixed;
   top: 60px;
@@ -118,13 +118,10 @@ body {
   padding: 6px 0;
 }
 
-.menu a:hover { color: #000; }
-
-/* === MAIN / HERO === */
+/* === MAIN === */
 .section { padding: 80px 20px; max-width: 900px; margin: 0 auto; }
 .section.gallery { padding-top: 120px; }
 
-/* SECTION HEADINGS */
 .section h2 {
   font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
@@ -155,8 +152,41 @@ body {
   overflow: hidden;
   background: #fff;
   display: block;
+  position: relative; /* Needed for label */
 }
 
+/* === LOCATION LABEL === */
+.location-label {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: rgba(0,0,0,0.60);
+  color: #fff;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+}
+
+/* Desktop hover reveal */
+.image-frame:hover .location-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile: label always light-visible */
+@media (max-width: 768px) {
+  .location-label {
+    opacity: 1;
+    background: rgba(0,0,0,0.35);
+    transform: translateY(0);
+  }
+}
+
+/* === IMAGE LOOK === */
 .image-frame img {
   display: block;
   width: 100%;
@@ -173,7 +203,7 @@ body {
   box-shadow: 0 22px 50px rgba(0,0,0,0.18);
 }
 
-/* === ABOUT / CONTACT === */
+/* === ABOUT === */
 .about {
   background: linear-gradient(135deg,#f2f2f5 0%,#e6e6dd 100%);
   padding-top: 180px;
@@ -208,7 +238,7 @@ body {
   color: #666;
 }
 
-/* === MODAL / LIGHTBOX (ZOOMABLE) === */
+/* === MODAL / LIGHTBOX === */
 .modal {
   display: none;
   position: fixed;
@@ -250,7 +280,7 @@ body {
   cursor: pointer;
 }
 
-/* === FADE-IN ON SCROLL === */
+/* === FADE-IN === */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);

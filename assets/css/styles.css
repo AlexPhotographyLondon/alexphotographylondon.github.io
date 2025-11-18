@@ -70,9 +70,6 @@ body {
   width: 50px;
   height: auto;
   object-fit: contain;
-  border-radius: 0;
-  border: none;
-  box-shadow: none;
 }
 
 /* === MENU BUTTON === */
@@ -135,7 +132,6 @@ body {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  grid-auto-rows: auto;
   align-items: start;
 }
 
@@ -151,8 +147,7 @@ body {
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   overflow: hidden;
   background: #fff;
-  display: block;
-  position: relative; /* Needed for label */
+  position: relative;
 }
 
 /* === LOCATION LABEL === */
@@ -177,12 +172,19 @@ body {
   transform: translateY(0);
 }
 
-/* Mobile: label always light-visible */
+/* Mobile: hide label in thumbnails */
 @media (max-width: 768px) {
   .location-label {
-    opacity: 1;
-    background: rgba(0,0,0,0.35);
-    transform: translateY(0);
+    display: none;
+  }
+
+  /* Modal location label styling (under the image) */
+  #modal-location {
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+    font-size: 1rem;
+    color: #e8e8e8;
   }
 }
 
@@ -190,8 +192,6 @@ body {
 .image-frame img {
   display: block;
   width: 100%;
-  height: auto;
-  border-radius: 0;
   border: 4px solid #000;
   box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   cursor: pointer;
@@ -242,14 +242,12 @@ body {
 .modal {
   display: none;
   position: fixed;
-  z-index: 2000;
   inset: 0;
+  z-index: 2000;
   background-color: rgba(0,0,0,0.88);
   justify-content: center;
   align-items: center;
   padding: 40px 20px;
-  overflow: hidden;
-  cursor: grab;
 }
 
 .modal.open { display: flex; }
@@ -266,7 +264,6 @@ body {
 
 .modal-content.zoomed {
   cursor: grabbing;
-  transform-origin: center center;
 }
 
 .modal-close {

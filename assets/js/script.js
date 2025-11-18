@@ -29,19 +29,25 @@ function capitalizeWords(str) {
 }
 
 // ===========================
-// Lightbox / Modal with Zoom & Pan
+// Modal / Lightbox
 // ===========================
 const modal = document.getElementById("image-modal");
 const modalImg = document.getElementById("modal-img");
 const closeBtn = document.querySelector(".modal-close");
 let isZoomed = false, startX = 0, startY = 0, currentX = 0, currentY = 0;
 
-// Open modal on image click (mobile + desktop)
+// Wrap modal content in flex column for label at bottom
+modal.style.display = "none";
+modal.style.flexDirection = "column";
+modal.style.alignItems = "center";
+modal.style.justifyContent = "center";
+
+// Open modal on image click (desktop & mobile)
 document.querySelectorAll(".zoomable").forEach(img => {
   img.addEventListener("click", () => {
-    // Remove previous modal location
-    const existing = document.querySelector(".modal-location");
-    if (existing) existing.remove();
+    // Remove old modal location
+    const oldLoc = document.querySelector(".modal-location");
+    if (oldLoc) oldLoc.remove();
 
     // Show modal
     modal.style.display = "flex";
@@ -49,10 +55,9 @@ document.querySelectorAll(".zoomable").forEach(img => {
     modalImg.classList.remove("zoomed");
     modalImg.style.transform = "translate(0px,0px) scale(1)";
     isZoomed = false;
-    currentX = 0;
-    currentY = 0;
+    currentX = 0; currentY = 0;
 
-    // Add location under image in modal
+    // Add location under image
     const loc = document.createElement("div");
     loc.className = "modal-location";
     loc.textContent = capitalizeWords(img.dataset.location);
@@ -62,7 +67,7 @@ document.querySelectorAll(".zoomable").forEach(img => {
     loc.style.fontSize = "1rem";
     loc.style.fontFamily = "'Montserrat', sans-serif";
     loc.style.fontWeight = "500";
-    loc.style.textTransform = "none"; // ensure proper capitalization
+    loc.style.textTransform = "none";
     modalImg.insertAdjacentElement("afterend", loc);
   });
 });
@@ -71,7 +76,7 @@ document.querySelectorAll(".zoomable").forEach(img => {
 closeBtn.onclick = () => modal.style.display = "none";
 modal.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
 
-// Zoom toggle inside modal
+// Toggle zoom inside modal
 modalImg.addEventListener("click", e => {
   e.stopPropagation();
   if (!isZoomed) {
@@ -81,8 +86,7 @@ modalImg.addEventListener("click", e => {
   } else {
     modalImg.classList.remove("zoomed");
     modalImg.style.transform = "translate(0px,0px) scale(1)";
-    currentX = 0;
-    currentY = 0;
+    currentX = 0; currentY = 0;
     isZoomed = false;
   }
 });
@@ -124,12 +128,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ===========================
-// Desktop Hover Location Label
+// Desktop Hover Labels (bottom center)
 // ===========================
 document.querySelectorAll(".image-frame").forEach(frame => {
   const img = frame.querySelector(".zoomable");
   const location = capitalizeWords(img.dataset.location);
 
+  // Create label
   const label = document.createElement("div");
   label.className = "location-label";
   label.textContent = location;
@@ -137,24 +142,20 @@ document.querySelectorAll(".image-frame").forEach(frame => {
   label.style.bottom = "10px";
   label.style.left = "50%";
   label.style.transform = "translateX(-50%)";
-  label.style.color = "#eee";
+  label.style.color = "#fff";
   label.style.fontFamily = "'Montserrat', sans-serif";
   label.style.fontWeight = "500";
   label.style.fontSize = "1rem";
   label.style.textAlign = "center";
   label.style.pointerEvents = "none";
   label.style.opacity = "0";
-  label.style.transition = "opacity 0.2s ease";
+  label.style.transition = "opacity 0.25s ease";
   label.style.textTransform = "none";
 
-  frame.style.position = "relative";
+  frame.style.position = "relative"; // ensure absolute works
   frame.appendChild(label);
 
-  // Show on hover (desktop only)
-  frame.addEventListener("mouseenter", () => {
-    if (window.innerWidth > 768) label.style.opacity = "1";
-  });
-  frame.addEventListener("mouseleave", () => {
-    if (window.innerWidth > 768) label.style.opacity = "0";
-  });
+  // Show only on hover for desktop
+  frame.addEventListener("mouseenter", () => { if (window.innerWidth > 768) label.style.opacity = "1"; });
+  frame.addEventListener("mouseleave", () => { if (window.innerWidth > 768) label.style.opacity = "0"; });
 });

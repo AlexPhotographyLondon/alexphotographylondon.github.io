@@ -42,7 +42,7 @@ modal.style.flexDirection = "column";
 modal.style.alignItems = "center";
 modal.style.justifyContent = "center";
 
-// Open modal on image click
+// Open modal on image click (mobile + desktop)
 document.querySelectorAll(".zoomable").forEach(img => {
   img.addEventListener("click", () => {
     // Remove previous modal location
@@ -57,7 +57,7 @@ document.querySelectorAll(".zoomable").forEach(img => {
     isZoomed = false;
     currentX = 0; currentY = 0;
 
-    // Create modal label
+    // Add location under image in modal
     const loc = document.createElement("div");
     loc.className = "modal-location";
     loc.textContent = capitalizeWords(img.dataset.location);
@@ -68,7 +68,6 @@ document.querySelectorAll(".zoomable").forEach(img => {
     loc.style.fontFamily = "'Montserrat', sans-serif";
     loc.style.fontWeight = "500";
     loc.style.textTransform = "none";
-
     modalImg.insertAdjacentElement("afterend", loc);
   });
 });
@@ -87,7 +86,8 @@ modalImg.addEventListener("click", e => {
   } else {
     modalImg.classList.remove("zoomed");
     modalImg.style.transform = "translate(0px,0px) scale(1)";
-    currentX = 0; currentY = 0;
+    currentX = 0;
+    currentY = 0;
     isZoomed = false;
   }
 });
@@ -129,36 +129,37 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ===========================
-// Desktop Hover Labels (bottom center)
+// Desktop Hover Labels (bottom center) - no duplicates
 // ===========================
 document.querySelectorAll(".image-frame").forEach(frame => {
-  const img = frame.querySelector(".zoomable");
-  const location = capitalizeWords(img.dataset.location);
+  // Avoid duplicate labels
+  if (!frame.querySelector(".location-label")) {
+    const img = frame.querySelector(".zoomable");
+    const location = capitalizeWords(img.dataset.location);
 
-  // Only one label per image-frame
-  const label = document.createElement("div");
-  label.className = "location-label";
-  label.textContent = location;
+    const label = document.createElement("div");
+    label.className = "location-label";
+    label.textContent = location;
 
-  label.style.position = "absolute";
-  label.style.bottom = "10px";
-  label.style.left = "50%";
-  label.style.transform = "translateX(-50%)";
-  label.style.color = "#fff";
-  label.style.fontFamily = "'Montserrat', sans-serif";
-  label.style.fontWeight = "500";
-  label.style.fontSize = "1rem";
-  label.style.textAlign = "center";
-  label.style.pointerEvents = "none";
-  label.style.opacity = "0";
-  label.style.transition = "opacity 0.25s ease";
-  label.style.textTransform = "none";
+    label.style.position = "absolute";
+    label.style.bottom = "10px";
+    label.style.left = "50%";
+    label.style.transform = "translateX(-50%)";
+    label.style.color = "#fff";
+    label.style.fontFamily = "'Montserrat', sans-serif";
+    label.style.fontWeight = "500";
+    label.style.fontSize = "1rem";
+    label.style.textAlign = "center";
+    label.style.pointerEvents = "none";
+    label.style.opacity = "0";
+    label.style.transition = "opacity 0.25s ease";
+    label.style.textTransform = "none";
 
-  // Ensure frame is relative
-  frame.style.position = "relative";
-  frame.appendChild(label);
+    frame.style.position = "relative";
+    frame.appendChild(label);
 
-  // Desktop only: hover to show label
-  frame.addEventListener("mouseenter", () => { if (window.innerWidth > 768) label.style.opacity = "1"; });
-  frame.addEventListener("mouseleave", () => { if (window.innerWidth > 768) label.style.opacity = "0"; });
+    // Desktop only: hover to show label
+    frame.addEventListener("mouseenter", () => { if (window.innerWidth > 768) label.style.opacity = "1"; });
+    frame.addEventListener("mouseleave", () => { if (window.innerWidth > 768) label.style.opacity = "0"; });
+  }
 });

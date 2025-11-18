@@ -1,57 +1,49 @@
+// ===========================
 // Set current year
+// ===========================
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// === SHRINKING BANNER ===
+// ===========================
+// Shrinking Banner
+// ===========================
 const banner = document.querySelector('.banner');
 const bannerInner = document.querySelector('.banner-inner');
-const menuToggle = document.querySelector('.menu-toggle');
-const menu = document.querySelector('.menu');
-
 window.addEventListener("scroll", () => {
   let scrolled = window.scrollY;
-  let newHeight = Math.max(60, 110 - scrolled * 0.3);
-  banner.style.height = newHeight + "px";
-  let scale = Math.max(0.8, 1 - scrolled * 0.0015);
-  bannerInner.style.transform = `scale(${scale})`;
+  banner.style.height = Math.max(60, 110 - scrolled * 0.3) + "px";
+  bannerInner.style.transform = `scale(${Math.max(0.8, 1 - scrolled * 0.0015)})`;
 });
 
-// === MOBILE MENU ===
+// ===========================
+// Mobile Menu
+// ===========================
+const menuToggle = document.querySelector(".menu-toggle");
+const menu = document.querySelector(".menu");
 menuToggle.addEventListener("click", () => menu.classList.toggle("open"));
 
-// === LIGHTBOX / MODAL WITH ZOOM & PAN ===
-const modal = document.getElementById("image-modal");
-const modalImg = document.getElementById("modal-img");
-const closeBtn = document.querySelector(".modal-close");
-
-let isZoomed = false;
-let startX = 0, startY = 0;
-let currentX = 0, currentY = 0;
-
-// Capitalize first letter of each word
+// ===========================
+// Helper: Capitalize first letter of each word
+// ===========================
 function capitalizeWords(str) {
   return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
 }
 
+// ===========================
+// Lightbox / Modal with Zoom & Pan
+// ===========================
 const modal = document.getElementById("image-modal");
 const modalImg = document.getElementById("modal-img");
 const closeBtn = document.querySelector(".modal-close");
-let isZoomed = false, currentX = 0, currentY = 0, startX = 0, startY = 0;
+let isZoomed = false, startX = 0, startY = 0, currentX = 0, currentY = 0;
 
-// Add desktop hover labels
-document.querySelectorAll(".zoomable").forEach(img => {
-  const label = document.createElement("div");
-  label.className = "location-label";
-  label.textContent = capitalizeWords(img.dataset.location);
-  img.parentElement.appendChild(label);
-});
-
-// Modal open (click on image)
+// Open modal on image click (mobile + desktop)
 document.querySelectorAll(".zoomable").forEach(img => {
   img.addEventListener("click", () => {
-    // Remove old modal location
+    // Remove previous modal location
     const existing = document.querySelector(".modal-location");
     if (existing) existing.remove();
 
+    // Show modal
     modal.style.display = "flex";
     modalImg.src = img.src;
     modalImg.classList.remove("zoomed");
@@ -60,10 +52,17 @@ document.querySelectorAll(".zoomable").forEach(img => {
     currentX = 0;
     currentY = 0;
 
-    // Add location under image
+    // Add location under image in modal
     const loc = document.createElement("div");
     loc.className = "modal-location";
     loc.textContent = capitalizeWords(img.dataset.location);
+    loc.style.textAlign = "center";
+    loc.style.marginTop = "12px";
+    loc.style.color = "#eee";
+    loc.style.fontSize = "1rem";
+    loc.style.fontFamily = "'Montserrat', sans-serif";
+    loc.style.fontWeight = "500";
+    loc.style.textTransform = "none"; // ensure proper capitalization
     modalImg.insertAdjacentElement("afterend", loc);
   });
 });
@@ -72,7 +71,7 @@ document.querySelectorAll(".zoomable").forEach(img => {
 closeBtn.onclick = () => modal.style.display = "none";
 modal.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
 
-// Zoom toggle
+// Zoom toggle inside modal
 modalImg.addEventListener("click", e => {
   e.stopPropagation();
   if (!isZoomed) {
@@ -104,12 +103,13 @@ modalImg.addEventListener("mousedown", e => {
     window.removeEventListener("mousemove", onMouseMove);
     window.removeEventListener("mouseup", onMouseUp);
   }
-
   window.addEventListener("mousemove", onMouseMove);
   window.addEventListener("mouseup", onMouseUp);
 });
 
-// === FADE-IN ON SCROLL ===
+// ===========================
+// Fade-in on scroll
+// ===========================
 document.addEventListener("DOMContentLoaded", () => {
   const elements = document.querySelectorAll('.fade-in');
   const observer = new IntersectionObserver(entries => {
@@ -123,14 +123,38 @@ document.addEventListener("DOMContentLoaded", () => {
   elements.forEach(el => observer.observe(el));
 });
 
-// === IMAGE LOCATION LABEL (Desktop Hover) ===
+// ===========================
+// Desktop Hover Location Label
+// ===========================
 document.querySelectorAll(".image-frame").forEach(frame => {
   const img = frame.querySelector(".zoomable");
   const location = capitalizeWords(img.dataset.location);
 
-  // Create hover label at bottom
   const label = document.createElement("div");
   label.className = "location-label";
   label.textContent = location;
+  label.style.position = "absolute";
+  label.style.bottom = "10px";
+  label.style.left = "50%";
+  label.style.transform = "translateX(-50%)";
+  label.style.color = "#eee";
+  label.style.fontFamily = "'Montserrat', sans-serif";
+  label.style.fontWeight = "500";
+  label.style.fontSize = "1rem";
+  label.style.textAlign = "center";
+  label.style.pointerEvents = "none";
+  label.style.opacity = "0";
+  label.style.transition = "opacity 0.2s ease";
+  label.style.textTransform = "none";
+
+  frame.style.position = "relative";
   frame.appendChild(label);
+
+  // Show on hover (desktop only)
+  frame.addEventListener("mouseenter", () => {
+    if (window.innerWidth > 768) label.style.opacity = "1";
+  });
+  frame.addEventListener("mouseleave", () => {
+    if (window.innerWidth > 768) label.style.opacity = "0";
+  });
 });

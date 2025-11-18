@@ -32,10 +32,23 @@ function capitalizeWords(str) {
   return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
 }
 
-// Open modal & show location under image (mobile & desktop click)
+const modal = document.getElementById("image-modal");
+const modalImg = document.getElementById("modal-img");
+const closeBtn = document.querySelector(".modal-close");
+let isZoomed = false, currentX = 0, currentY = 0, startX = 0, startY = 0;
+
+// Add desktop hover labels
+document.querySelectorAll(".zoomable").forEach(img => {
+  const label = document.createElement("div");
+  label.className = "location-label";
+  label.textContent = capitalizeWords(img.dataset.location);
+  img.parentElement.appendChild(label);
+});
+
+// Modal open (click on image)
 document.querySelectorAll(".zoomable").forEach(img => {
   img.addEventListener("click", () => {
-    // Remove previous modal location
+    // Remove old modal location
     const existing = document.querySelector(".modal-location");
     if (existing) existing.remove();
 
@@ -47,35 +60,17 @@ document.querySelectorAll(".zoomable").forEach(img => {
     currentX = 0;
     currentY = 0;
 
-    // Modal location div under image
+    // Add location under image
     const loc = document.createElement("div");
     loc.className = "modal-location";
     loc.textContent = capitalizeWords(img.dataset.location);
-    loc.style.textAlign = "center";
-    loc.style.marginTop = "12px";
-    loc.style.color = "#eee";
-    loc.style.fontSize = "1rem";
-    loc.style.fontFamily = "'Montserrat', sans-serif";
-    loc.style.fontWeight = "500";
-
-    // Append under the image
     modalImg.insertAdjacentElement("afterend", loc);
   });
 });
 
 // Close modal
-closeBtn.onclick = () => {
-  modal.style.display = "none";
-  const loc = document.querySelector(".modal-location");
-  if (loc) loc.remove();
-};
-modal.onclick = e => {
-  if (e.target === modal) {
-    modal.style.display = "none";
-    const loc = document.querySelector(".modal-location");
-    if (loc) loc.remove();
-  }
-};
+closeBtn.onclick = () => modal.style.display = "none";
+modal.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
 
 // Zoom toggle
 modalImg.addEventListener("click", e => {

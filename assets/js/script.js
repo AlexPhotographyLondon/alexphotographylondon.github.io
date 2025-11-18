@@ -33,6 +33,11 @@ let currentX = 0, currentY = 0;
 // Open modal
 document.querySelectorAll(".zoomable").forEach(img => {
   img.addEventListener("click", () => {
+
+    // Remove previous location box
+    const existing = document.querySelector(".modal-location");
+    if (existing) existing.remove();
+
     modal.style.display = "flex";
     modalImg.src = img.src;
     modalImg.classList.remove("zoomed");
@@ -40,13 +45,34 @@ document.querySelectorAll(".zoomable").forEach(img => {
     isZoomed = false;
     currentX = 0;
     currentY = 0;
+
+    // === MOBILE LOCATION UNDER IMAGE ===
+    const loc = document.createElement("div");
+    loc.className = "modal-location";
+    loc.textContent = img.dataset.location;
+    loc.style.textAlign = "center";
+    loc.style.marginTop = "12px";
+    loc.style.color = "#eee";
+    loc.style.fontSize = "1rem";
+
+    // Append location *after* the image inside the modal
+    modalImg.insertAdjacentElement("afterend", loc);
   });
 });
 
 // Close modal
-closeBtn.onclick = () => modal.style.display = "none";
+closeBtn.onclick = () => {
+  modal.style.display = "none";
+  const loc = document.querySelector(".modal-location");
+  if (loc) loc.remove();
+};
+
 modal.onclick = (e) => {
-  if (e.target === modal) modal.style.display = "none";
+  if (e.target === modal) {
+    modal.style.display = "none";
+    const loc = document.querySelector(".modal-location");
+    if (loc) loc.remove();
+  }
 };
 
 // Toggle zoom on click inside modal
@@ -102,9 +128,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   elements.forEach(el => observer.observe(el));
 });
-// === IMAGE LOCATION TOOLTIP & MOBILE DISPLAY ===
 
-// Create tooltip element (desktop only)
+// === IMAGE LOCATION TOOLTIP (DESKTOP HOVER) ===
+
+// Tooltip element (desktop)
 const tooltip = document.createElement("div");
 tooltip.className = "img-tooltip";
 tooltip.style.position = "fixed";
@@ -118,11 +145,10 @@ tooltip.style.opacity = "0";
 tooltip.style.transition = "opacity 0.2s ease";
 document.body.appendChild(tooltip);
 
-// Track hover for desktop
+// Desktop hover events
 document.querySelectorAll(".zoomable").forEach(img => {
   const location = img.dataset.location;
 
-  // Desktop hover
   img.addEventListener("mousemove", (e) => {
     tooltip.textContent = location;
     tooltip.style.opacity = "1";
@@ -133,28 +159,9 @@ document.querySelectorAll(".zoomable").forEach(img => {
   img.addEventListener("mouseleave", () => {
     tooltip.style.opacity = "0";
   });
-
-  // MOBILE (show inside modal)
-  img.addEventListener("click", () => {
-    const existing = document.querySelector(".modal-location");
-    if (existing) existing.remove();
-
-    const loc = document.createElement("div");
-    loc.className = "modal-location";
-    loc.textContent = location;
-    loc.style.textAlign = "center";
-    loc.style.marginTop = "12px";
-    loc.style.color = "#eee";
-    loc.style.fontSize = "1rem";
-    loc.style.fontFamily = "sans-serif";
-
-    modal.appendChild(loc);
-  });
 });
 
 // Hide tooltip when modal opens
 modal.addEventListener("click", () => {
   tooltip.style.opacity = "0";
 });
-
-

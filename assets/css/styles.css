@@ -1,5 +1,6 @@
 /* IMPORT FONTS */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Playfair+Display:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@400;500;700&display=swap');
 
 /* === RESET & BASE === */
@@ -9,14 +10,7 @@ body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.5;
   background: #C5C1B9;
-  background-image:
-    repeating-linear-gradient(
-      45deg,
-      rgba(255,255,255,0.1),
-      rgba(255,255,255,0.1) 1px,
-      transparent 1px,
-      transparent 5px
-    );
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1) 1px, transparent 1px, transparent 5px);
   color: #333;
   scroll-behavior: smooth;
 }
@@ -38,259 +32,90 @@ body {
   justify-content: center;
 }
 
-.banner-inner {
-  text-align: center;
-  flex: 1;
-  transition: transform 0.25s ease;
-}
+.banner-inner { text-align: center; flex: 1; transition: transform 0.25s ease; }
 
-.banner-inner h1 {
-  font-family: 'Sofia Sans', 'Playfair Display', serif;
-  font-size: 2rem;
-  margin-bottom: 4px;
-  line-height: 1;
-}
-
-.banner-inner p {
-  font-size: 0.9rem;
-  opacity: 0.8;
-  margin: 0;
-}
+.banner-inner h1 { font-family: 'Sofia Sans', 'Playfair Display', serif; font-size: 2rem; margin-bottom: 4px; line-height: 1; }
+.banner-inner p { font-size: 0.9rem; opacity: 0.8; margin: 0; }
 
 /* === LOGO === */
-.logo-container {
-  position: absolute;
-  left: 15px;
-  top: 55%;
-  transform: translateY(-50%);
-  z-index: 1200;
-}
-
-.logo {
-  width: 50px;
-  height: auto;
-  object-fit: contain;
-}
+.logo-container { position: absolute; left: 15px; top: 55%; transform: translateY(-50%); z-index: 1200; }
+.logo { width: 50px; height: auto; object-fit: contain; border: none; }
 
 /* === MENU BUTTON === */
-.menu-toggle {
-  background: none;
-  border: 2px solid #333;
-  border-radius: 4px;
-  padding: 6px 10px;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #333;
-}
+.menu-toggle { background: none; border: 2px solid #333; border-radius: 4px; padding: 6px 10px; font-size: 1.2rem; cursor: pointer; color: #333; }
 
 /* === MENU LINKS === */
 .menu {
-  position: fixed;
-  top: 60px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  position: fixed; top: 60px; right: 20px;
+  display: flex; flex-direction: column; gap: 12px;
   background: rgba(255,255,255,0.95);
   padding: 14px;
   border-radius: 6px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-  opacity: 0;
-  pointer-events: none;
+  opacity: 0; pointer-events: none;
   transform: translateY(-6px);
   transition: opacity 0.25s ease, transform 0.25s ease;
   z-index: 1500;
 }
-
-.menu.open {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-.menu a {
-  color: #333;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 6px 0;
-}
+.menu.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.menu a { color: #333; text-decoration: none; font-weight: 500; padding: 6px 0; }
 
 /* === MAIN === */
 .section { padding: 80px 20px; max-width: 900px; margin: 0 auto; }
 .section.gallery { padding-top: 120px; }
-
-.section h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 2rem;
-  margin-bottom: 20px;
-  text-align: center;
-  font-weight: 500;
-}
+.section h2 { font-family: 'Montserrat', sans-serif; font-size: 2rem; margin-bottom: 20px; text-align: center; font-weight: 500; }
 
 /* === GALLERY GRID === */
-.gallery .grid {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  align-items: start;
-}
+.gallery .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); grid-auto-rows: auto; align-items: start; }
+@media (min-width: 1200px) { .gallery .grid { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); } }
 
-@media (min-width: 1200px) {
-  .gallery .grid {
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  }
-}
+.image-frame { border: 8px solid #fff; padding: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); overflow: hidden; background: #fff; display: block; position: relative; }
 
-.image-frame {
-  border: 8px solid #fff;
-  padding: 4px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  overflow: hidden;
-  background: #fff;
-  position: relative;
-}
+.image-frame img { display: block; width: 100%; height: auto; border-radius: 0; border: 4px solid #000; box-shadow: 0 12px 30px rgba(0,0,0,0.12); cursor: pointer; transition: transform 0.28s ease, box-shadow 0.28s ease; }
+.image-frame img:hover { transform: scale(1.02); box-shadow: 0 22px 50px rgba(0,0,0,0.18); }
 
-/* === LOCATION LABEL === */
-.location-label,
-.modal-location {
-  font-family: 'Montserrat', sans-serif; /* match section h2 */
-  font-weight: 500;
-  text-transform: none; /* remove uppercase */
-  font-size: 0.9rem;
-  color: #fff;
+/* === LOCATION LABEL (BOTTOM, HOVER ONLY) === */
+.location-label {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
   background: rgba(0,0,0,0.6);
+  color: #fff;
   padding: 6px 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
   border-radius: 4px;
-  display: block;
-  text-align: center; /* center under image */
-  margin-top: 6px;
-  position: static; /* remove absolute */
-  opacity: 1; /* always visible on mobile */
-  transform: none;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
-
-/* Desktop hover reveal */
-.image-frame:hover .location-label {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Mobile: hide label in thumbnails */
-@media (max-width: 768px) {
-  .location-label {
-    display: none;
+@media (min-width: 769px) {
+  .image-frame:hover .location-label {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
-
-  /* Modal location label styling (under the image) */
-  #modal-location {
-    display: block;
-    text-align: center;
-    margin-top: 14px;
-    font-size: 1rem;
-    color: #e8e8e8;
-  }
-}
-
-/* === IMAGE LOOK === */
-.image-frame img {
-  display: block;
-  width: 100%;
-  border: 4px solid #000;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-  cursor: pointer;
-  transition: transform 0.28s ease, box-shadow 0.28s ease;
-}
-
-.image-frame img:hover {
-  transform: scale(1.02);
-  box-shadow: 0 22px 50px rgba(0,0,0,0.18);
 }
 
 /* === ABOUT === */
-.about {
-  background: linear-gradient(135deg,#f2f2f5 0%,#e6e6dd 100%);
-  padding-top: 180px;
-  padding-bottom: 80px;
-  text-align: center;
-}
-
-.about-inner img {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid #000;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-  margin-top: 40px;
-}
-
-.about p {
-  font-size: 1.1rem;
-  max-width: 700px;
-  margin: 20px auto 0;
-  color: #444;
-}
-
-.section.contact { padding-top: 120px; }
+.about { background: linear-gradient(135deg,#f2f2f5 0%,#e6e6dd 100%); padding-top: 180px; padding-bottom: 80px; text-align: center; }
+.about-inner img { width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 4px solid #000; box-shadow: 0 8px 25px rgba(0,0,0,0.15); margin-top: 40px; }
+.about p { font-size: 1.1rem; max-width: 700px; margin: 20px auto 0; color: #444; }
 
 /* === FOOTER === */
-.site-footer {
-  text-align: center;
-  padding: 40px 20px;
-  font-size: 0.9rem;
-  color: #666;
-}
+.site-footer { text-align: center; padding: 40px 20px; font-size: 0.9rem; color: #666; }
 
 /* === MODAL / LIGHTBOX === */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  background-color: rgba(0,0,0,0.88);
-  justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
-}
-
+.modal { display: none; position: fixed; z-index: 2000; inset: 0; background-color: rgba(0,0,0,0.88); justify-content: center; align-items: center; padding: 40px 20px; overflow: hidden; cursor: grab; }
 .modal.open { display: flex; }
-
-.modal-content {
-  max-width: 92%;
-  max-height: 92%;
-  border: 4px solid #fff;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-  border-radius: 4px;
-  transition: transform 0.3s ease;
-  cursor: grab;
-}
-
-.modal-content.zoomed {
-  cursor: grabbing;
-}
-
-.modal-close {
-  position: absolute;
-  top: 22px;
-  right: 30px;
-  background: transparent;
-  border: none;
-  color: #fff;
-  font-size: 40px;
-  cursor: pointer;
-}
+.modal-content { max-width: 92%; max-height: 92%; border: 4px solid #fff; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-radius: 4px; transition: transform 0.3s ease; cursor: grab; }
+.modal-content.zoomed { cursor: grabbing; transform-origin: center center; }
+.modal-close { position: absolute; top: 22px; right: 30px; background: transparent; border: none; color: #fff; font-size: 40px; cursor: pointer; }
 
 /* === FADE-IN === */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.85s ease-out, transform 0.85s ease-out;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.85s ease-out, transform 0.85s ease-out; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
 
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
@@ -303,27 +128,8 @@ body {
 
 /* === DESKTOP ENHANCEMENTS === */
 @media (min-width: 1024px) {
-  .section.gallery {
-    max-width: 1600px;
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-  .gallery .grid {
-    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    gap: 32px;
-  }
+  .section.gallery { max-width: 1600px; padding-left: 50px; padding-right: 50px; }
+  .gallery .grid { grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 32px; }
   .image-frame { border-width: 12px; padding: 8px; }
   .image-frame img { border-width: 6px; }
-}
-
-/* Modal location text → same style as section titles (h2) */
-.modal-location {
-  font-family: inherit;         /* same font as <h2> */
-  font-size: 1.6rem;            /* match your h2 size */
-  font-weight: 300;             /* same thin elegant weight */
-  letter-spacing: 2px;          /* matches the spaced title style */
-  text-transform: uppercase;    /* same visual feel */
-  text-align: center;
-  margin-top: 14px;
-  color: #eaeaea;               /* stays readable on dark modal */
 }

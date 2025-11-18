@@ -27,6 +27,12 @@ let isZoomed = false;
 let startX = 0, startY = 0;
 let currentX = 0, currentY = 0;
 
+// Utility function: Capitalize first letter of each word
+function capitalizeWords(str) {
+  return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+}
+
+// Open modal & show location under image on mobile
 document.querySelectorAll(".zoomable").forEach(img => {
   img.addEventListener("click", () => {
     // Remove old modal location
@@ -41,10 +47,10 @@ document.querySelectorAll(".zoomable").forEach(img => {
     currentX = 0;
     currentY = 0;
 
-    // Modal location under image
+    // Mobile location under image
     const loc = document.createElement("div");
     loc.className = "modal-location";
-    loc.textContent = img.dataset.location;
+    loc.textContent = capitalizeWords(img.dataset.location);
     loc.style.textAlign = "center";
     loc.style.marginTop = "12px";
     loc.style.color = "#eee";
@@ -57,10 +63,21 @@ document.querySelectorAll(".zoomable").forEach(img => {
 });
 
 // Close modal
-closeBtn.onclick = () => modal.style.display = "none";
-modal.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+closeBtn.onclick = () => {
+  modal.style.display = "none";
+  const loc = document.querySelector(".modal-location");
+  if (loc) loc.remove();
+};
 
-// Zoom toggle
+modal.onclick = e => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+    const loc = document.querySelector(".modal-location");
+    if (loc) loc.remove();
+  }
+};
+
+// Toggle zoom
 modalImg.addEventListener("click", e => {
   e.stopPropagation();
   if (!isZoomed) {
@@ -97,7 +114,7 @@ modalImg.addEventListener("mousedown", e => {
   window.addEventListener("mouseup", onMouseUp);
 });
 
-// Fade-in
+// === FADE-IN ON SCROLL ===
 document.addEventListener("DOMContentLoaded", () => {
   const elements = document.querySelectorAll('.fade-in');
   const observer = new IntersectionObserver(entries => {
@@ -109,4 +126,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, { threshold: 0.2 });
   elements.forEach(el => observer.observe(el));
+});
+
+// === IMAGE LOCATION LABEL (Desktop Hover) ===
+document.querySelectorAll(".image-frame").forEach(frame => {
+  const img = frame.querySelector(".zoomable");
+  const location = capitalizeWords(img.dataset.location);
+
+  // Create hover label
+  const label = document.createElement("div");
+  label.className = "location-label";
+  label.textContent = location;
+  frame.appendChild(label);
 });

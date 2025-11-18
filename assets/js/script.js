@@ -22,7 +22,7 @@ const menu = document.querySelector(".menu");
 menuToggle.addEventListener("click", () => menu.classList.toggle("open"));
 
 // ===========================
-// Helper: Capitalize first letter of each word
+// Capitalize first letter of each word
 // ===========================
 function capitalizeWords(str) {
   return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
@@ -36,18 +36,18 @@ const modalImg = document.getElementById("modal-img");
 const closeBtn = document.querySelector(".modal-close");
 let isZoomed = false, startX = 0, startY = 0, currentX = 0, currentY = 0;
 
-// Wrap modal content in flex column for label at bottom
+// Modal container styling for bottom label
 modal.style.display = "none";
 modal.style.flexDirection = "column";
 modal.style.alignItems = "center";
 modal.style.justifyContent = "center";
 
-// Open modal on image click (desktop & mobile)
+// Open modal on image click
 document.querySelectorAll(".zoomable").forEach(img => {
   img.addEventListener("click", () => {
-    // Remove old modal location
-    const oldLoc = document.querySelector(".modal-location");
-    if (oldLoc) oldLoc.remove();
+    // Remove previous modal location
+    const existing = document.querySelector(".modal-location");
+    if (existing) existing.remove();
 
     // Show modal
     modal.style.display = "flex";
@@ -57,7 +57,7 @@ document.querySelectorAll(".zoomable").forEach(img => {
     isZoomed = false;
     currentX = 0; currentY = 0;
 
-    // Add location under image
+    // Create modal label
     const loc = document.createElement("div");
     loc.className = "modal-location";
     loc.textContent = capitalizeWords(img.dataset.location);
@@ -68,6 +68,7 @@ document.querySelectorAll(".zoomable").forEach(img => {
     loc.style.fontFamily = "'Montserrat', sans-serif";
     loc.style.fontWeight = "500";
     loc.style.textTransform = "none";
+
     modalImg.insertAdjacentElement("afterend", loc);
   });
 });
@@ -76,7 +77,7 @@ document.querySelectorAll(".zoomable").forEach(img => {
 closeBtn.onclick = () => modal.style.display = "none";
 modal.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
 
-// Toggle zoom inside modal
+// Zoom toggle inside modal
 modalImg.addEventListener("click", e => {
   e.stopPropagation();
   if (!isZoomed) {
@@ -134,10 +135,11 @@ document.querySelectorAll(".image-frame").forEach(frame => {
   const img = frame.querySelector(".zoomable");
   const location = capitalizeWords(img.dataset.location);
 
-  // Create label
+  // Only one label per image-frame
   const label = document.createElement("div");
   label.className = "location-label";
   label.textContent = location;
+
   label.style.position = "absolute";
   label.style.bottom = "10px";
   label.style.left = "50%";
@@ -152,10 +154,11 @@ document.querySelectorAll(".image-frame").forEach(frame => {
   label.style.transition = "opacity 0.25s ease";
   label.style.textTransform = "none";
 
-  frame.style.position = "relative"; // ensure absolute works
+  // Ensure frame is relative
+  frame.style.position = "relative";
   frame.appendChild(label);
 
-  // Show only on hover for desktop
+  // Desktop only: hover to show label
   frame.addEventListener("mouseenter", () => { if (window.innerWidth > 768) label.style.opacity = "1"; });
   frame.addEventListener("mouseleave", () => { if (window.innerWidth > 768) label.style.opacity = "0"; });
 });
